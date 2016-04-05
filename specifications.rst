@@ -3,10 +3,31 @@
 ECE 429 course project
 ------------------------
 
+.. |date| date::
+
+:Authors: Dan White and contributors
+:Date: |date|
+
+.. sectnum::
+    :depth: 3
+
+
+**NOTE: The .rst version of this document shall be considered the canonical version, the .pdf is merely a convenience.**
+
+
+.. contents::
+
+
 ========================================
 Introduction
 ========================================
-## RFID Background
+
+
+
+---------------
+RFID Background
+---------------
+
 Radio Frequency Identification (RFID) is a wireless communication scheme where a Reader transmits a strong signal towards a device (Tag) and the Tag responds by sending back data.  This communication from the Tag to Reader is accomplished by the Tag varying the impedance of its antenna.  The energy impinging on the Tag’s antenna is absorbed and reflected (“scattered”) in some proportion depending on the antenna’s impedance characteristics.
 
 
@@ -19,7 +40,7 @@ The most common method for modulating these back-scattered sidebands is to vary 
 Such a communication method requires extremely little power consumption on the Tag side of the link.  With careful design, the Tag can even extract enough energy from the incoming signal from the Reader to power itself and operate the antenna switch.
 
 
-## Synchronous Serial Communication
+Synchronous Serial Communication
 The two most common interfaces to connect peripheral devices to a central processor both use serial data connections, SPI and I2C.  It is possible, and even somewhat common, to find devices which are compatible with both formats using the same pins.
 
 

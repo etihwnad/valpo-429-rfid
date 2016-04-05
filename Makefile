@@ -7,7 +7,9 @@ default: $(doc).pdf
 
 .SECONDARY:
 
-RSTOPTS=--generator --documentoptions="letterpaper,12pt"
+RSTOPTS=--time --date --generator --documentoptions="letterpaper,12pt"
+RSTOPTS+=--no-section-numbering
+RSTOPTS+=--toc-entry-backlinks
 
 %.tex: %.rst
 	rst2latex $(RSTOPTS) $^ > $@
