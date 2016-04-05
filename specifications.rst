@@ -8,6 +8,8 @@ ECE 429 course project
 :Authors: Dan White and contributors
 :Date: |date|
 
+.. rubber: clean specifications.out
+
 .. sectnum::
     :depth: 3
 
@@ -15,7 +17,7 @@ ECE 429 course project
 **NOTE: The .rst version of this document shall be considered the canonical version, the .pdf is merely a convenience.**
 
 
-.. contents::
+.. contents:: Table of Contents
 
 
 ========================================
