@@ -26,29 +26,32 @@ Introduction
 
 
 
----------------
-RFID Background
----------------
+---------------------------------------------
+Radio-frequency identification
+---------------------------------------------
+Radio-frequency identification (RFID) is a wireless communication scheme where a Reader transmits a strong signal towards a device (Tag) and the Tag responds by sending back data.
+This communication from the Tag to Reader is accomplished by the Tag varying the impedance of its antenna.
+The energy impinging on the Tag’s antenna is absorbed and reflected (“scattered”) in some proportion depending on the antenna’s impedance characteristics.
 
-Radio Frequency Identification (RFID) is a wireless communication scheme where a Reader transmits a strong signal towards a device (Tag) and the Tag responds by sending back data.  This communication from the Tag to Reader is accomplished by the Tag varying the impedance of its antenna.  The energy impinging on the Tag’s antenna is absorbed and reflected (“scattered”) in some proportion depending on the antenna’s impedance characteristics.
+If the Tag changes its antenna impedance rapidly, the back-scattered energy will change also, resulting in the scattered wave having double-sideband modulation components in addition to the original frequency.
+The Reader can detect these sidebands and demodulate the data that the Tag sent.
+
+The most common method for modulating these back-scattered sidebands is to vary the frequency of the impedance changes between two frequencies.
+Bits are therefore able to be assigned to each unique frequency.
+In other words, the Tag switches the antenna impedance between two levels (usually open- / short-circuit) at frequency #1 or frequency #2 depending on the current bit to be sent.
+
+Such a communication method requires extremely little power consumption on the Tag side of the link.
+With careful design, the Tag can even extract enough energy from the incoming signal from the Reader to power itself and operate the antenna switch.
 
 
-If the Tag changes its antenna impedance rapidly, the back-scattered energy will change also, resulting in the scattered wave having double-sideband modulation components in addition to the original frequency.  The Reader can detect these sidebands and demodulate the data that the Tag sent.
-
-
-The most common method for modulating these back-scattered sidebands is to vary the frequency of the impedance changes between two frequencies.  Bits are therefore able to be assigned to each unique frequency.  In other words, the Tag switches the antenna impedance between two levels (usually open- / short-circuit) at frequency #1 or frequency #2 depending on the current bit to be sent.
-
-
-Such a communication method requires extremely little power consumption on the Tag side of the link.  With careful design, the Tag can even extract enough energy from the incoming signal from the Reader to power itself and operate the antenna switch.
-
-
+------------------------------------
 Synchronous Serial Communication
-The two most common interfaces to connect peripheral devices to a central processor both use serial data connections, SPI and I2C.  It is possible, and even somewhat common, to find devices which are compatible with both formats using the same pins.
-
+------------------------------------
+The two most common interfaces to connect peripheral devices to a central processor both use serial data connections, SPI and I2C.
+It is possible, and even somewhat common, to find devices which are compatible with both formats using the same pins.
 
 * SPI : Serial Peripheral Interface bus
 * I2C : Inter-Integrated-Circuit bus
-
 
 The details and timing diagrams for each of these formats are easily found on the internet.
 
@@ -56,8 +59,8 @@ The details and timing diagrams for each of these formats are easily found on th
 ========================================
 Project Specifications
 ========================================
-The project for ECE 429 is to design and layout an integrated circuit in the On Semiconductor C5N 0.5um CMOS process that implements the major subsystems of an RFID tag.  A complete design would be capable of transmitting arbitrary data on programmable backscatter channel frequencies in the 900 MHz ISM band and also possibly in the 2.4 GHz ISM band.
-
+The project for ECE 429 is to design and layout an integrated circuit in the On Semiconductor C5N 0.5um CMOS process that implements the major subsystems of an RFID tag.
+A complete design would be capable of transmitting arbitrary data on programmable backscatter channel frequencies in the 900 MHz ISM band and also possibly in the 2.4 GHz ISM band.
 
 The IC will appear as a slave peripheral to a processor and be controlled through a serial data connection via the SPI and/or I2C protocols.
 
@@ -66,17 +69,15 @@ Specific design and implementation details are the
 
 
 
-
-## Processor interface specification
+-----------------------------------------
+Processor interface specification
+-----------------------------------------
 [BLOCK DIAGRAM]
 
 
-Communication with the host processor is via a serial peripheral interface, SPI
+Communication with the host processor is via a serial peripheral interface, SPI, port.
 
-
-
-
-The device for the project will have a combined SPI/I2C, with internal detection of the input protocol being used.
+The device for the project will have a combined SPI/I2C port, with internal detection of the input protocol being used.
 
 
 Command and data format is in a register read/write style architecture
@@ -86,6 +87,15 @@ Command and data format is in a register read/write style architecture
 * Optional 8-bit data, if required by the command mnemonic 
    * In I2C mode, the second and following bytes are either send or receive data
    * In SPI mode, the send data is clocked in on the MOSI device pin, while the received data is clocked out of the device on the MISO pin of the device.
+
+
+.. table:: Interface command format
+
+    =============   ==========      ============
+    byte0           byte1           [byte2 ..]
+    =============   ==========      ============
+    8-bit address   8-bit data      [8-bit data]
+    =============   ==========      ============
 
 
 http://www.i2cchip.com/mix_spi_i2c.html
@@ -116,8 +126,17 @@ http://www.timing-diagrams.com/
 
 
 
-## PLL Frequency Synthesizer
+--------------------------------------
+NCO Frequency Synthesizer
+--------------------------------------
+A numerically-controlled oscillator forms the basis of the programmable backscatter frequency control for both channel selection and frequency-shift-keying (FSK) modulation.
+
 [BLOCK DIAGRAM]
+
+.. figure:: fig/nco.pdf
+
+    Numerically-controlled oscillator diagram.
+    This one outputs two square waves which have a 90-degree phase shift.
 
 
 ### Programmable dividers
