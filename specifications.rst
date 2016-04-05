@@ -133,6 +133,7 @@ A numerically-controlled oscillator forms the basis of the programmable backscat
 
 [BLOCK DIAGRAM]
 
+
 .. figure:: fig/nco.pdf
 
     Numerically-controlled oscillator diagram.
