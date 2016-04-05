@@ -134,7 +134,7 @@ A numerically-controlled oscillator forms the basis of the programmable backscat
 [BLOCK DIAGRAM]
 
 
-.. figure:: fig/nco
+.. figure:: fig/nco.png
 
     Numerically-controlled oscillator diagram.
     This one outputs two square waves which have a 90-degree phase shift.
