@@ -1,8 +1,12 @@
-﻿Backscatter RFID Project
+﻿Backscatter RFID Chip
+========================
+ECE 429 course project
+------------------------
 
-
-#​ Introduction
-##​ RFID Background
+========================================
+Introduction
+========================================
+## RFID Background
 Radio Frequency Identification (RFID) is a wireless communication scheme where a Reader transmits a strong signal towards a device (Tag) and the Tag responds by sending back data.  This communication from the Tag to Reader is accomplished by the Tag varying the impedance of its antenna.  The energy impinging on the Tag’s antenna is absorbed and reflected (“scattered”) in some proportion depending on the antenna’s impedance characteristics.
 
 
@@ -15,7 +19,7 @@ The most common method for modulating these back-scattered sidebands is to vary 
 Such a communication method requires extremely little power consumption on the Tag side of the link.  With careful design, the Tag can even extract enough energy from the incoming signal from the Reader to power itself and operate the antenna switch.
 
 
-##​ Synchronous Serial Communication
+## Synchronous Serial Communication
 The two most common interfaces to connect peripheral devices to a central processor both use serial data connections, SPI and I2C.  It is possible, and even somewhat common, to find devices which are compatible with both formats using the same pins.
 
 
@@ -26,7 +30,9 @@ The two most common interfaces to connect peripheral devices to a central proces
 The details and timing diagrams for each of these formats are easily found on the internet.
 
 
-#​ Project Specifications
+========================================
+Project Specifications
+========================================
 The project for ECE 429 is to design and layout an integrated circuit in the On Semiconductor C5N 0.5um CMOS process that implements the major subsystems of an RFID tag.  A complete design would be capable of transmitting arbitrary data on programmable backscatter channel frequencies in the 900 MHz ISM band and also possibly in the 2.4 GHz ISM band.
 
 
@@ -38,7 +44,7 @@ Specific design and implementation details are the
 
 
 
-##​ Processor interface specification
+## Processor interface specification
 [BLOCK DIAGRAM]
 
 
@@ -87,27 +93,27 @@ http://www.timing-diagrams.com/
 
 
 
-##​ PLL Frequency Synthesizer
+## PLL Frequency Synthesizer
 [BLOCK DIAGRAM]
 
 
-###​ Programmable dividers
+### Programmable dividers
 An internal module of the chip forms the basis of a Phase-Locked Loop (PLL) frequency synthesizer with a fractional divider.  These registers are two unsigned 8-bit values M, and N.
-​ Voltage-controlled oscillator
+Voltage-controlled oscillator
 * Similar to the CD4046 IC’s VCO
-​2.2.3​ Phase comparator
+2.2.3 Phase comparator
 * Type-1 (XOR)
-​2.2.4​ Loop filter
+2.2.4 Loop filter
 * External to the chip
-​2.2.5​ Registers
+2.2.5 Registers
 * M
 * N
 * Control
-   * Enable VCO
-   * Reset dividers
+* Enable VCO
+* Reset dividers
 
-##​ Antenna impedance switches
+## Antenna impedance switches
 These switch various impedances in parallel with the antenna to vary its net impedance and thence backscatter magnitude/phase.
 
-##​ Charge pump
+## Charge pump
 Accepts antenna input and outputs semi-regulated DC.
