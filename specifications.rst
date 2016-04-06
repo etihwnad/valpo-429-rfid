@@ -73,32 +73,22 @@ The details and timing diagrams for each of these formats are easily found on th
 ================================================================
 Project Specifications
 ================================================================
+
 The project for ECE 429 is to design and layout an integrated circuit in the On Semiconductor C5N 0.5um CMOS process that implements the major subsystems of an RFID tag.
-A complete design would be capable of transmitting arbitrary data on programmable backscatter channel frequencies in the 900 MHz ISM band and also possibly in the 2.4 GHz ISM band.
-
-The IC will appear as a slave peripheral to a processor and be controlled through a serial data connection via the SPI and/or I2C protocols.
-
-
-Specific design and implementation details are the 
+A complete design would be capable of transmitting arbitrary data on programmable backscatter channel frequencies in the 915 MHz ISM band and also possibly in the 2.4 GHz ISM band.
 
 
 
 -----------------------------------------
 Processor interface specification
 -----------------------------------------
-[BLOCK DIAGRAM]
 
-
-Communication with the host processor is via a serial peripheral interface, SPI, port.
-
-The device for the project will have a combined SPI/I2C port, with internal detection of the input protocol being used.
-
-The main interface to this chip will be as a combined SPI / I2C slave device.
+The processor interface to this chip SHALL via a combined SPI / I2C slave port.
 Slave device circuitry SHALL properly detect the beginning of either an I2C or SPI transaction and behave accordingly.
 
-From the view of the controlling processor the device is a bank of up to 128 registers of 8-bits each which may be written to or read from.
-The chip datasheet will specify the implemented address locations and the meaning of reads and/or writes to those addresses.
-Writes to an unimplemented address will have no effect.
+From the view of the controlling processor, the device is a bank of up to 128 registers of 8-bits each which may be written to or read from.
+The chip datasheet MUST specify the implemented address locations and the meaning of reads and/or writes to those addresses.
+Writes to an unimplemented address SHOULD have no effect.
 Reads of unimplemented register addresses will return meaningless data and SHOULD be ignored by the controlling processor.
 
 The chip's I2C device address MUST be within the range of valid addresses according to the I2C specification.
@@ -158,6 +148,8 @@ The least-significant bits of the address MAY be pin-programmable, i.e. zero or 
 
 
 
+Protocol references
+*******************
 
 http://www.i2cchip.com/mix_spi_i2c.html
 
