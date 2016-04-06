@@ -3,28 +3,41 @@
 ECE 429 course project
 ------------------------
 
-.. |date| date::
-
-:Authors: Dan White and contributors
-:Date: |date|
-
 .. rubber: clean specifications.out
+
+.. include:: gitversion.txt
 
 .. sectnum::
     :depth: 3
 
+.. target-notes::
 
-**NOTE: The .rst version of this document shall be considered the canonical version, the .pdf is merely a convenience.**
+:Authors: Dan White and contributors
+:Date: |date|
+:Version: |version|
+
+
+
+
 
 
 .. contents:: Table of Contents
 
 
-========================================
+================================================================
 Introduction
-========================================
+================================================================
 
 
+---------------------------------------------
+Terminology
+---------------------------------------------
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC-2119]_.
+
+.. [RFC-2119] https://www.ietf.org/rfc/rfc2119.txt
+
+NOTE: The .rst version of this document SHALL be considered the canonical version, the .pdf is merely a convenience.
+Discrepancies MUST resolve to the .rst version.
 
 ---------------------------------------------
 Radio-frequency identification
@@ -56,9 +69,10 @@ It is possible, and even somewhat common, to find devices which are compatible w
 The details and timing diagrams for each of these formats are easily found on the internet.
 
 
-========================================
+
+================================================================
 Project Specifications
-========================================
+================================================================
 The project for ECE 429 is to design and layout an integrated circuit in the On Semiconductor C5N 0.5um CMOS process that implements the major subsystems of an RFID tag.
 A complete design would be capable of transmitting arbitrary data on programmable backscatter channel frequencies in the 900 MHz ISM band and also possibly in the 2.4 GHz ISM band.
 
@@ -79,8 +93,40 @@ Communication with the host processor is via a serial peripheral interface, SPI,
 
 The device for the project will have a combined SPI/I2C port, with internal detection of the input protocol being used.
 
+The main interface to this chip will be as a combined SPI / I2C slave device.
+Slave device circuitry SHALL properly detect the beginning of either an I2C or SPI transaction and behave accordingly.
 
-Command and data format is in a register read/write style architecture
+From the view of the controlling processor the device is a bank of up to 128 registers of 8-bits each which may be written to or read from.
+The chip datasheet will specify the implemented address locations and the meaning of reads and/or writes to those addresses.
+Writes to an unimplemented address will have no effect.
+Reads of unimplemented register addresses will return meaningless data and SHOULD be ignored by the controlling processor.
+
+The chip's I2C device address MUST be within the range of valid addresses according to the I2C specification.
+The least-significant bits of the address MAY be pin-programmable, i.e. zero or more pins MAY be used to set the last address bits while the prefix bits are hard-coded to some valid value.
+
+
+.. table:: SPI register write transaction
+
+    ============  ====================  ======================
+    Pin              byte0              byte1
+    ============  ====================  ======================
+    Bit #:          ``76543210``        ``76543210``
+    ``MOSI``       ``0<Raddr>``         ``<8-data>``
+    ``MISO``       ``xxxxxxxx``         ``xxxxxxxx``
+    ============  ====================  ======================
+
+
+.. table:: SPI register read transaction
+
+    ============  ====================  ======================
+    Pin              byte0              byte1
+    ============  ====================  ======================
+    Bit #:          ``76543210``        ``76543210``
+    ``MOSI``       ``1<Raddr>``         ``xxxxxxxx``
+    ``MISO``       ``xxxxxxxx``         ``<8-data>``
+    ============  ====================  ======================
+
+
 
 
 * 8-bit command, read/write a register location
@@ -89,13 +135,28 @@ Command and data format is in a register read/write style architecture
    * In SPI mode, the send data is clocked in on the MOSI device pin, while the received data is clocked out of the device on the MISO pin of the device.
 
 
-.. table:: Interface command format
 
-    =============   ==========      ============
-    byte0           byte1           [byte2 ..]
-    =============   ==========      ============
-    8-bit address   8-bit data      [8-bit data]
-    =============   ==========      ============
+
+.. table:: I2C register write
+
+    ============  ====================  ======================  =============
+    Pin              byte0                   byte1               byte2
+    ============  ====================  ======================  =============
+    Bit #:          ``76543210``        ``76543210``            ``76543210``
+    ``SDA``         ``<Daddr>0``        ``x<Raddr>``            ``<8-data>``
+    ============  ====================  ======================  =============
+
+
+.. table:: I2C register read
+
+    ============  ====================  ======================  =============
+    Pin              byte0                   byte1               byte2
+    ============  ====================  ======================  =============
+    Bit #:          ``76543210``        ``76543210``            ``76543210``
+    ``SDA``         ``<Daddr>1``        ``x<Raddr>``            ``<8-data>``
+    ============  ====================  ======================  =============
+
+
 
 
 http://www.i2cchip.com/mix_spi_i2c.html
