@@ -17,11 +17,21 @@ ECE 429 course project
 :Version: |version|
 
 
+.. raw:: latex
 
+    \pdfpxdimen=1in % 1 DPI
+    \divide\pdfpxdimen by 96
+
+.. |pm| unicode:: 0xB1 .. plus-minus sign
 
 
 
 .. contents:: Table of Contents
+
+.. raw:: latex
+
+    \listoffigures
+    \listoftables
 
 
 ================================================================
@@ -176,40 +186,72 @@ http://www.timing-diagrams.com/
 
 
 
-
-
-
 --------------------------------------
-NCO Frequency Synthesizer
+Switch mapper
 --------------------------------------
+The switch mapper translates the mode of operation (FSK, or QAM) into appropriate antenna switch states.
+Switch states are translated as ``switch[x] = 0``: NMOS off, and ``switch[x] == 1``: NMOS on.
+
+In FSK mode (``mode == 0``), the input *fmod* is directly passed to ``switch[0]`` while the other switches remain off.
+For QAM mode (``mode == 1``), the 2-bit input *symbol[1:0]* determines which single switch is on and the *fmod* input is ignored.
+
+
+.. figure:: fig/sym-switch.png
+    :width: 80%
+
+    Switch state mapping block diagram.  See the table "Symbol to antenna switch mapping table" for the decoding.
+
+
+.. table:: Symbol to antenna switch mapping table.
+
+    ======  ======  ============    =============
+    mode    fmod    symbol[1:0]     switch[2:0]
+    ======  ======  ============    =============
+    ``0``   ``0``   ``XX``          ``000``
+    ``0``   ``1``   ``XX``          ``001``
+    ``1``   ``X``   ``00``          ``000``
+    ``1``   ``X``   ``01``          ``001``
+    ``1``   ``X``   ``10``          ``010``
+    ``1``   ``X``   ``11``          ``100``
+    ======  ======  ============    =============
+
+------------------------------------------
+Numerically-controlled oscillator (NCO)
+------------------------------------------
 A numerically-controlled oscillator forms the basis of the programmable backscatter frequency control for both channel selection and frequency-shift-keying (FSK) modulation.
+Two N-bit frequency control words, *fcw0[N-1:0]* and *fcw1[N-1:0]*, are applied to a multiplexer whose output is selected by the state of *fsel*
+The current state of the phase accumulator register and the selected frequency control word are added and used to set the next state of the phase accumulator register, causing the accumulator to increment its state by *fcw* at each clock cycle.
+Only the most-significant bit of the phase accumulator is used as the output signal, which is then a square wave at an average frequency of:
 
-[BLOCK DIAGRAM]
+.. math::
 
+    f_{out} = \dfrac{\mathit{fcw}[:]}{2^N} f_{clk}
+
+The smallest change in average output frequency for the NCO is given by:
+
+.. math::
+
+    f_{res} = \dfrac{f_{clk}}{2^N}
+
+The duty cycle is not guaranteed to be 50\% -- the high and low times may vary by |pm| 1 clock period. See reference [WP-NCO] for more information about NCO output characteristics.
 
 .. figure:: fig/nco.png
+    :width: 80%
 
-    Numerically-controlled oscillator diagram.
+    Numerically-controlled oscillator diagram and signals.
     This one outputs two square waves which have a 90-degree phase shift.
 
+.. [WP-NCO] https://en.wikipedia.org/wiki/Numerically_controlled_oscillator
 
-### Programmable dividers
-An internal module of the chip forms the basis of a Phase-Locked Loop (PLL) frequency synthesizer with a fractional divider.  These registers are two unsigned 8-bit values M, and N.
-Voltage-controlled oscillator
-* Similar to the CD4046 IC’s VCO
-2.2.3 Phase comparator
-* Type-1 (XOR)
-2.2.4 Loop filter
-* External to the chip
-2.2.5 Registers
-* M
-* N
-* Control
-* Enable VCO
-* Reset dividers
 
-## Antenna impedance switches
+
+------------------------------------------
+Antenna switches
+------------------------------------------
 These switch various impedances in parallel with the antenna to vary its net impedance and thence backscatter magnitude/phase.
 
-## Charge pump
+------------------------------------------
+Charge pump
+------------------------------------------
 Accepts antenna input and outputs semi-regulated DC.
+
