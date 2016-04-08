@@ -6,6 +6,7 @@ src=$(wildcard *.rst)
 RST2TEXOPTS=--time --date --generator --documentoptions="letterpaper,12pt"
 RST2TEXOPTS+=--no-section-numbering
 RST2TEXOPTS+=--toc-entry-backlinks
+RST2TEXOPTS+=--table-style=booktabs
 
 tex=$(patsubst %.rst,%.tex,$(src))
 pdf=$(patsubst %.rst,%.pdf,$(src))
