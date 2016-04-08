@@ -93,47 +93,61 @@ A complete design would be capable of transmitting arbitrary data on programmabl
 Processor interface specification
 -----------------------------------------
 
-The processor interface to this chip SHALL via a combined SPI / I2C slave port.
-Slave device circuitry SHALL properly detect the beginning of either an I2C or SPI transaction and behave accordingly.
-
+The processor interface to this chip SHALL be via an SPI slave port.
 From the view of the controlling processor, the device is a bank of up to 128 registers of 8-bits each which may be written to or read from.
 The chip datasheet MUST specify the implemented address locations and the meaning of reads and/or writes to those addresses.
 Writes to an unimplemented address SHOULD have no effect.
-Reads of unimplemented register addresses will return meaningless data and SHOULD be ignored by the controlling processor.
+Reads of unimplemented register addresses MAY return meaningless data and SHOULD be ignored by the controlling processor.
 
-The chip's I2C device address MUST be within the range of valid addresses according to the I2C specification.
-The least-significant bits of the address MAY be pin-programmable, i.e. zero or more pins MAY be used to set the last address bits while the prefix bits are hard-coded to some valid value.
+The chip datasheet SHALL clearly specify the SPI mode in terms of ``CPOL`` and ``CPHA`` as used in reference [WP-SPI].
+
+.. [WP-SPI] https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus
+
+There SHALL be two commands accepted by the device: *read-register* and
+*write-register*.
+For an SPI bus transaction, these commands are encoded in the first and
+most-significant bit of the first byte sent to the chip.
+*Read-register* is encoded as a ``1`` while *write-register* is encoded as a
+``0`` value.
+The following two tables describe the protocol used for register read and write
+commands.
 
 
-.. table:: SPI register write transaction
+.. table:: SPI register write transaction.  ``Raddr`` is the 7-bit register address and ``Rdata`` is the 8-bit register data to be stored.
 
     ============  ====================  ======================
     Pin              byte0              byte1
     ============  ====================  ======================
     Bit #:          ``76543210``        ``76543210``
-    ``MOSI``       ``0<Raddr>``         ``<8-data>``
+    ``MOSI``       ``0[Raddr]``         ``[Rdata ]``
     ``MISO``       ``xxxxxxxx``         ``xxxxxxxx``
     ============  ====================  ======================
 
 
-.. table:: SPI register read transaction
+.. table:: SPI register read transaction.  ``Raddr`` is the 7-bit register address and ``Rdata`` is the 8-bit register data stored at that address.
 
     ============  ====================  ======================
     Pin              byte0              byte1
     ============  ====================  ======================
     Bit #:          ``76543210``        ``76543210``
-    ``MOSI``       ``1<Raddr>``         ``xxxxxxxx``
-    ``MISO``       ``xxxxxxxx``         ``<8-data>``
+    ``MOSI``       ``1[Raddr]``         ``xxxxxxxx``
+    ``MISO``       ``xxxxxxxx``         ``[Rdata ]``
     ============  ====================  ======================
 
 
+Implementation of a serial data interface compatible with both SPI and I2C is
+OPTIONAL.
 
+The chip's I2C device address MUST be within the range of valid addresses according to the I2C specification.
+The least-significant bits of the address MAY be pin-programmable, i.e. zero or more pins MAY be used to set the last address bits while the prefix bits are hard-coded to some valid value.
 
-* 8-bit command, read/write a register location
-* Optional 8-bit data, if required by the command mnemonic 
-   * In I2C mode, the second and following bytes are either send or receive data
-   * In SPI mode, the send data is clocked in on the MOSI device pin, while the received data is clocked out of the device on the MISO pin of the device.
-
+Register read or write commands SHALL follow the same format as the SPI-based
+protocol except the first byte is the I2C standard device address and
+read/write bit.
+Since the *read* or *write* command is specified in the least-significant bit
+of the first transaction byte, the chip SHALL ignore the most-significant bit
+of the register address byte.
+The following tables describe the chip's 3-byte I2C protocol.
 
 
 
@@ -161,14 +175,11 @@ The least-significant bits of the address MAY be pin-programmable, i.e. zero or 
 Protocol references
 *******************
 
-http://www.i2cchip.com/mix_spi_i2c.html
-
-
 https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi
-
 
 https://learn.sparkfun.com/tutorials/i2c
 
+http://www.i2cchip.com/mix_spi_i2c.html
 
 http://www.i2c-bus.org/
 
@@ -219,27 +230,32 @@ For QAM mode (``mode == 1``), the 2-bit input *symbol[1:0]* determines which sin
 Numerically-controlled oscillator (NCO)
 ------------------------------------------
 A numerically-controlled oscillator forms the basis of the programmable backscatter frequency control for both channel selection and frequency-shift-keying (FSK) modulation.
-Two N-bit frequency control words, *fcw0[N-1:0]* and *fcw1[N-1:0]*, are applied to a multiplexer whose output is selected by the state of *fsel*
-The current state of the phase accumulator register and the selected frequency control word are added and used to set the next state of the phase accumulator register, causing the accumulator to increment its state by *fcw* at each clock cycle.
-Only the most-significant bit of the phase accumulator is used as the output signal, which is then a square wave at an average frequency of:
+The NCO SHALL use two 8-bit frequency control words, *fcw0[7:0]* and *fcw1[7:0]*, which are applied to a multiplexer whose output is selected by the state of *fsel*
+The current state of the phase accumulator register and the selected frequency control word SHALL be added, ignoring the carry-out, and used to set the next state of the phase accumulator register.
+This causes the accumulator to increment its state by the value of the selected *fcw* at each clock cycle.
 
-.. math::
-
-    f_{out} = \dfrac{\mathit{fcw}[:]}{2^N} f_{clk}
-
-The smallest change in average output frequency for the NCO is given by:
-
-.. math::
-
-    f_{res} = \dfrac{f_{clk}}{2^N}
-
-The duty cycle is not guaranteed to be 50\% -- the high and low times may vary by |pm| 1 clock period. See reference [WP-NCO] for more information about NCO output characteristics.
 
 .. figure:: fig/nco.png
     :width: 80%
 
     Numerically-controlled oscillator diagram and signals.
-    This one outputs two square waves which have a 90-degree phase shift.
+
+
+Only the most-significant bit of the phase accumulator SHALL used as the output signal, which is a square wave at an average frequency of:
+
+.. math::
+
+    f_{out} = \dfrac{\mathit{fcw}}{256} f_{clk}
+
+The smallest change in average output frequency for the NCO is given by:
+
+.. math::
+
+    f_{res} = \dfrac{f_{clk}}{256}
+
+The duty cycle is not guaranteed to be 50\% -- the high and low times may vary by |pm| 1 clock period.
+See reference [WP-NCO] for more information about NCO output characteristics.
+
 
 .. [WP-NCO] https://en.wikipedia.org/wiki/Numerically_controlled_oscillator
 
@@ -249,6 +265,8 @@ The duty cycle is not guaranteed to be 50\% -- the high and low times may vary b
 Antenna switches
 ------------------------------------------
 These switch various impedances in parallel with the antenna to vary its net impedance and thence backscatter magnitude/phase.
+
+Three N-type switches SHALL be used
 
 ------------------------------------------
 Charge pump

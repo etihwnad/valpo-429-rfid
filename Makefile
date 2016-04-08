@@ -30,14 +30,14 @@ gitversion.txt: $(src)
 	@echo ".. |version| replace:: $$(git describe --tags --long --dirty=-**dirty**)" >> $@
 	@echo "" >> $@
 
-%.tex: %.rst
+%.tex: %.rst gitversion.txt
 	rst2latex $(RST2TEXOPTS) $< > $@
 
 %.pdf: %.tex
 	rubber --pdf $<
 	rubber --clean $<
 
-%.html: %.rst
+%.html: %.rst gitversion.txt
 	rst2html $(RST2HTMLOPTS) $< > $@
 
 .PHONY: clean
