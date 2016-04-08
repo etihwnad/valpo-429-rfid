@@ -92,108 +92,159 @@ A complete design would be capable of transmitting arbitrary data on programmabl
 -----------------------------------------
 Processor interface specification
 -----------------------------------------
-
 The processor interface to this chip SHALL be via an SPI slave port.
-From the view of the controlling processor, the device is a bank of up to 128 registers of 8-bits each which may be written to or read from.
-The chip datasheet MUST specify the implemented address locations and the meaning of reads and/or writes to those addresses.
-Writes to an unimplemented address SHOULD have no effect.
-Reads of unimplemented register addresses MAY return meaningless data and SHOULD be ignored by the controlling processor.
+From the view of the processor, the SPI port is viewed as an **N**-bit shift register.
+Updating any bit of the device's configuration requires sending the entire **N**-bit set of data in a single bus transaction.
+
+Pins participating in the SPI interface SHALL be named:
+
+    * *SCLK*
+    * *MOSI*
+    * *MISO*
+    * *CS*
+
 
 The chip datasheet SHALL clearly specify the SPI mode in terms of ``CPOL`` and ``CPHA`` as used in reference [WP-SPI].
 
 .. [WP-SPI] https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus
 
-There SHALL be two commands accepted by the device: *read-register* and
-*write-register*.
-For an SPI bus transaction, these commands are encoded in the first and
-most-significant bit of the first byte sent to the chip.
-*Read-register* is encoded as a ``1`` while *write-register* is encoded as a
-``0`` value.
-The following two tables describe the protocol used for register read and write
-commands.
 
+Data SHALL transferred beginning with the most-significant bit of the entire bit string.
+Data being returned from the slave to the master SHALL be shifted out of at the same time, also beginning with the *msb*.
 
-.. table:: SPI register write transaction.  ``Raddr`` is the 7-bit register address and ``Rdata`` is the 8-bit register data to be stored.
+Data bits that are applied to internal circuitry such as the NCO and DataOut register SHALL NOT change until the rising edge of the chip's *CS* pin.
 
-    ============  ====================  ======================
-    Pin              byte0              byte1
-    ============  ====================  ======================
-    Bit #:          ``76543210``        ``76543210``
-    ``MOSI``       ``0[Raddr]``         ``[Rdata ]``
-    ``MISO``       ``xxxxxxxx``         ``xxxxxxxx``
-    ============  ====================  ======================
+Example of a transaction:
 
+    #.  The Master initiates a bus transaction and shifts out the **N**-bit data string ``data0[N-1:0]`` most-significant bit first to the slave on the ``MOSI`` pin.
+        The slave shifts out the current state of the data string on the ``MISO`` pin, also most-significant bit first.
 
-.. table:: SPI register read transaction.  ``Raddr`` is the 7-bit register address and ``Rdata`` is the 8-bit register data stored at that address.
+        * After the rising edge of the *CS* pin, the Master will have received **N**-bits of data from the slave.
 
-    ============  ====================  ======================
-    Pin              byte0              byte1
-    ============  ====================  ======================
-    Bit #:          ``76543210``        ``76543210``
-    ``MOSI``       ``1[Raddr]``         ``xxxxxxxx``
-    ``MISO``       ``xxxxxxxx``         ``[Rdata ]``
-    ============  ====================  ======================
+    #.  The Master initiates a second bus transaction and shifts out the **N**-bit data string ``data1[N-1:0]`` most-significant bit first to the slave on the ``MOSI`` pin.
+        The slave shifts out the current state of the data string on the ``MISO`` pin, also most-significant bit first.
 
+        * After the transaction, the Master will have again received **N**-bits of data from the slave.
+        * This data MUST be identical to ``data0[N-1:0]``.
 
-Implementation of a serial data interface compatible with both SPI and I2C is
-OPTIONAL.
+A consequence of this protocol definition is that the Slave behaves as a write-only device.
+The Slave SHALL NOT send data back to the Master other than the data received from the Master in the previous bus transaction.
 
-The chip's I2C device address MUST be within the range of valid addresses according to the I2C specification.
-The least-significant bits of the address MAY be pin-programmable, i.e. zero or more pins MAY be used to set the last address bits while the prefix bits are hard-coded to some valid value.
+An asynchronous and active-low *reset* pin SHALL be provided by the chip.
+At the falling edge of the *reset* pin, every register and flip-flop SHALL immediately set their *Q* outputs to a default value immediately.
+This default register output state SHALL be clearly documented in the chip datasheet for EVERY register and EVERY flip-flop.
 
-Register read or write commands SHALL follow the same format as the SPI-based
-protocol except the first byte is the I2C standard device address and
-read/write bit.
-Since the *read* or *write* command is specified in the least-significant bit
-of the first transaction byte, the chip SHALL ignore the most-significant bit
-of the register address byte.
-The following tables describe the chip's 3-byte I2C protocol.
+While the *reset* pin is low, every register MUST continually output the default state and ignore all input signals or clocks.
+After the rising edge of the *reset* pin, the chip SHALL resume normal operation.
 
 
 
-.. table:: I2C register write
-
-    ============  ====================  ======================  =============
-    Pin              byte0                   byte1               byte2
-    ============  ====================  ======================  =============
-    Bit #:          ``76543210``        ``76543210``            ``76543210``
-    ``SDA``         ``<Daddr>0``        ``x<Raddr>``            ``<8-data>``
-    ============  ====================  ======================  =============
 
 
-.. table:: I2C register read
 
-    ============  ====================  ======================  =============
-    Pin              byte0                   byte1               byte2
-    ============  ====================  ======================  =============
-    Bit #:          ``76543210``        ``76543210``            ``76543210``
-    ``SDA``         ``<Daddr>1``        ``x<Raddr>``            ``<8-data>``
-    ============  ====================  ======================  =============
+
+
+..  The processor interface to this chip SHALL be via an SPI slave port.
+    From the view of the controlling processor, the device is a bank of up to 128 registers of 8-bits each which may be written to or read from.
+    The chip datasheet MUST specify the implemented address locations and the meaning of reads and/or writes to those addresses.
+    Writes to an unimplemented address SHOULD have no effect.
+    Reads of unimplemented register addresses MAY return meaningless data and SHOULD be ignored by the controlling processor.
+
+..  The chip datasheet SHALL clearly specify the SPI mode in terms of ``CPOL`` and ``CPHA`` as used in reference [WP-SPI].
+
+..  .. [WP-SPI] https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus
+
+..  There SHALL be two commands accepted by the device: *read-register* and
+    *write-register*.
+    For an SPI bus transaction, these commands are encoded in the first and
+    most-significant bit of the first byte sent to the chip.
+    *Read-register* is encoded as a ``1`` while *write-register* is encoded as a
+    ``0`` value.
+    The following two tables describe the protocol used for register read and write
+    commands.
+
+
+..  .. table:: SPI register write transaction.  ``Raddr`` is the 7-bit register address and ``Rdata`` is the 8-bit register data to be stored.
+
+..      ============  ====================  ======================
+        Pin              byte0              byte1
+        ============  ====================  ======================
+        Bit #:          ``76543210``        ``76543210``
+        ``MOSI``       ``0[Raddr]``         ``[Rdata ]``
+        ``MISO``       ``xxxxxxxx``         ``xxxxxxxx``
+        ============  ====================  ======================
+
+
+..  .. table:: SPI register read transaction.  ``Raddr`` is the 7-bit register address and ``Rdata`` is the 8-bit register data stored at that address.
+
+..      ============  ====================  ======================
+        Pin              byte0              byte1
+        ============  ====================  ======================
+        Bit #:          ``76543210``        ``76543210``
+        ``MOSI``       ``1[Raddr]``         ``xxxxxxxx``
+        ``MISO``       ``xxxxxxxx``         ``[Rdata ]``
+        ============  ====================  ======================
+
+
+..  Implementation of a serial data interface compatible with both SPI and I2C is
+    OPTIONAL.
+
+..  The chip's I2C device address MUST be within the range of valid addresses according to the I2C specification.
+    The least-significant bits of the address MAY be pin-programmable, i.e. zero or more pins MAY be used to set the last address bits while the prefix bits are hard-coded to some valid value.
+
+..  Register read or write commands SHALL follow the same format as the SPI-based
+    protocol except the first byte is the I2C standard device address and
+    read/write bit.
+    Since the *read* or *write* command is specified in the least-significant bit
+    of the first transaction byte, the chip SHALL ignore the most-significant bit
+    of the register address byte.
+    The following tables describe the chip's 3-byte I2C protocol.
+
+
+
+..  .. table:: I2C register write
+
+..      ============  ====================  ======================  =============
+        Pin              byte0                   byte1               byte2
+        ============  ====================  ======================  =============
+        Bit #:          ``76543210``        ``76543210``            ``76543210``
+        ``SDA``         ``<Daddr>0``        ``x<Raddr>``            ``<8-data>``
+        ============  ====================  ======================  =============
+
+
+..  .. table:: I2C register read
+
+..      ============  ====================  ======================  =============
+        Pin              byte0                   byte1               byte2
+        ============  ====================  ======================  =============
+        Bit #:          ``76543210``        ``76543210``            ``76543210``
+        ``SDA``         ``<Daddr>1``        ``x<Raddr>``            ``<8-data>``
+        ============  ====================  ======================  =============
 
 
 
 Protocol references
 *******************
 
-https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi
+    https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi
 
-https://learn.sparkfun.com/tutorials/i2c
+    http://www.i2cchip.com/mix_spi_i2c.html
 
-http://www.i2cchip.com/mix_spi_i2c.html
+..  http://www.nxp.com/documents/user_manual/UM10204.pdf
 
-http://www.i2c-bus.org/
+..  https://learn.sparkfun.com/tutorials/i2c
 
+..  http://www.i2c-bus.org/
 
-http://www.nxp.com/documents/user_manual/UM10204.pdf
 
 
 
 
 Other links:
-http://wavedrom.com/
 
+    http://wavedrom.com/
 
-http://www.timing-diagrams.com/
+    http://www.timing-diagrams.com/
 
 
 
