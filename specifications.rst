@@ -266,6 +266,7 @@ For QAM mode (``mode == 1``), the 2-bit input *symbol[1:0]* determines which sin
 
 .. table:: Symbol to antenna switch mapping table.
 
+
     ======  ======  ============    =============
     mode    fmod    symbol[1:0]     switch[2:0]
     ======  ======  ============    =============
@@ -317,7 +318,15 @@ Antenna switches
 ------------------------------------------
 These switch various impedances in parallel with the antenna to vary its net impedance and thence backscatter magnitude/phase.
 
-Three N-type switches SHALL be used
+Three N-type switches SHALL be have their gate terminals controlled by the signals ``switch[2:0]``.
+The switches SHALL have their drain terminal directly connected to the *ANT* chip pin.
+Each switch transistors ``switch[2]`` and ``switch[1]`` SHALL be connected to separate resistors *R2* and *R1* of different values.
+Values for these resistors SHALL be determined through discussions with Professors White and Thomas.
+These resistor values SHALL be documented in the chip datasheet.
+The other terminal of the resistors SHALL be connected to node *antref* which SHALL also be connected to chip pin *ANTREF*.
+The source terminal of the ``switch[0]`` transistor SHALL be connected directly to the *antref* node.
+Pin *ANTREF* SHALL be assumed to be nominally at the system's lowest voltage, but the pin SHALL NOT be connected internally to any other "ground-like" node.
+
 
 ------------------------------------------
 Charge pump
