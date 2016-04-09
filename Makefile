@@ -46,6 +46,6 @@ gitversion.txt: $(src)
 clean:
 	rubber --clean $(tex)
 
-web:
-	scp specifications.{pdf,html} dan@tesla.whiteaudio.com:/var/www/www.agnd.net/valpo/429/
+web: $(html) $(pdf)
+	scp $^ dan@tesla.whiteaudio.com:/var/www/www.agnd.net/valpo/429/
 
