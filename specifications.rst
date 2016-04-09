@@ -1,6 +1,7 @@
-﻿Backscatter RFID Chip
 ========================
 ECE 429 course project
+========================
+Backscatter RFID Chip
 ------------------------
 
 .. rubber: clean specifications.out
@@ -23,6 +24,10 @@ ECE 429 course project
     \divide\pdfpxdimen by 96
 
 .. |pm| unicode:: 0xB1 .. plus-minus sign
+
+.. |up| unicode:: 0x2191 .. up-arrow
+
+.. |dn| unicode:: 0x2193 .. down-arrow
 
 
 
@@ -245,6 +250,28 @@ Other links:
     http://wavedrom.com/
 
     http://www.timing-diagrams.com/
+
+
+
+------------------------------------------
+Data Transmit Block
+------------------------------------------
+This block operates in two modes,depending on the state of the *mode* signal.
+When ``mode = 0`` and the signal *transmit* is ``1``, block shifts out the contents of the *data[M-1:0]* register to its output pin *symbol[0]* at each rising edged of the *symclk* signal.
+Pin *symbol[1]* remains ``0`` in this mode.
+
+
+.. table:: Data Transmit signal states
+
+    ======  ======  ============    =============
+     mode    fmod    symbol[1:0]     switch[2:0]
+    ======  ======  ============    =============
+    ``0``   ``0``   ``XX``          |up| |dn|
+    ``0``   ``1``   ``XX``          ``001``
+    ``1``   ``X``   ``00``          ``000``
+    ======  ======  ============    =============
+
+
 
 
 

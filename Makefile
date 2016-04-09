@@ -7,6 +7,7 @@ RST2TEXOPTS=--time --date --generator --documentoptions="letterpaper,12pt"
 RST2TEXOPTS+=--no-section-numbering
 RST2TEXOPTS+=--toc-entry-backlinks
 RST2TEXOPTS+=--table-style=booktabs
+RST2TEXOPTS+=--stylesheet=lmodern
 
 tex=$(patsubst %.rst,%.tex,$(src))
 pdf=$(patsubst %.rst,%.pdf,$(src))
@@ -44,3 +45,7 @@ gitversion.txt: $(src)
 .PHONY: clean
 clean:
 	rubber --clean $(tex)
+
+web:
+	scp specifications.{pdf,html} dan@tesla.whiteaudio.com:/var/www/www.agnd.net/valpo/429/
+
