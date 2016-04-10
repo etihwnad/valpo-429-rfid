@@ -253,8 +253,21 @@ Other links:
 
 
 ------------------------------------------
-Data Transmit Block
+Data Transmit Controller
 ------------------------------------------
+This block SHALL accept an input data vector and configuration from the SPI interface and coordinate the sending of those bits to the modulation system made up of the NCO and switch mapper.
+A data packet transmission SHALL begin on the first rising edge of the *symclk* signal after a rising edge on the *start* signal.
+The *tx* output signal SHALL go high synchronized by first edge of *symclk* after *start* goes high.
+Signal *tx* SHALL remain high for the number of *symclk* periods contained in the value of the input configuration signal *ndata[7:0]*.
+
+At the rising edge of *start* the current value of the *data[127:0]* configuration vector SHALL be captured into
+
+When input ``mode = 0``, the contents of the internal data register are shifted out at each rising edge of *symclk* beginning with the most-significant bit.
+This signal SHALL appear at output pin *fsel*.
+
+Output pin *fsel* SHALL be the same as the current b
+
+
 This block operates in two modes,depending on the state of the *mode* signal.
 When ``mode = 0`` and the signal *transmit* is ``1``, block shifts out the contents of the *data[M-1:0]* register to its output pin *symbol[0]* at each rising edged of the *symclk* signal.
 Pin *symbol[1]* remains ``0`` in this mode.
