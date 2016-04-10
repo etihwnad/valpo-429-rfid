@@ -29,11 +29,13 @@ gitversion.txt: $(src)
 	@echo "re-creating gitversion.txt"
 	@echo ".. |date| date:: %Y-%m-%d %H:%M" > $@
 	@echo "" >> $@
-	@echo ".. |version| replace:: $$(git describe --tags --long --dirty=-**dirty**)" >> $@
+	@echo ".. |version| replace:: $$(git describe --tags --long)" >> $@
 	@echo "" >> $@
 
 %.tex: %.rst gitversion.txt
 	rst2latex $(RST2TEXOPTS) $< > $@
+	@#remove image extension to use better version (pdf) if available
+	perl -p -i -e 's/\.png//' $@
 
 %.pdf: %.tex
 	rubber --pdf $<
