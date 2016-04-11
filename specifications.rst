@@ -261,18 +261,60 @@ Other links:
 
     http://www.timing-diagrams.com/
 
+------------------------------------------
+Subsystem Interconnection
+------------------------------------------
+
+.. figure:: fig/system-block.png
+    :width: 100%
+
+    Data Controller input and output signals.
+
 
 
 ------------------------------------------
 Data Transmit Controller
 ------------------------------------------
 This block SHALL accept an input data vector and configuration from the SPI interface and coordinate the sending of those bits to the modulation system made up of the NCO and switch mapper.
-A data packet transmission SHALL begin on the first rising edge of the *symclk* signal after a rising edge on the *start* signal.
-The *tx* output signal SHALL go high synchronized by first edge of *symclk* after *start* goes high.
-Signal *tx* SHALL remain high for the number of *symclk* periods contained in the value of the input configuration signal *nbits[7:0]*.
 
-At the rising edge of *start* the current value of the *data[127:0]* configuration vector SHALL be captured into an internal 128-bit register.
+At the rising edge of *load* the current value of the *data[127:0]* configuration vector SHALL be captured into an internal 128-bit register.
 This internal 128-bit register SHALL be used for shifting out the data.
+
+A data packet transmission SHALL begin on the first rising edge of the *symclk* signal after a rising edge on the *start* signal.
+The *start* signal SHALL remain high until the next rising edge of *symclk* which starts a packet transmission.
+This timing constraint on the *start* signal MUST be clearly documented in the chip datasheet.
+
+.. sidebar:: OPTIONAL advanced specification for the previous paragraph.
+    :subtitle: Fast to slow clock domain pulse synchronization
+
+    Background: The *start* signal is synchronized in the *clk* clock domain (that of the NCO) but the Data Transmit Controller operates in the *symclk* clock domain.
+    Fortunately, *symclk* is derived from *clk* via an NCO and is therefore synchronous with the *clk* clock domain.
+
+    ---
+
+    Alternate specification for *start* high time:
+    A data packet transmission SHALL begin on the first rising edge of the *symclk* signal after a rising edge on the *start* signal.
+    The minimum high time of the *start* signal SHALL be one *clk* signal period.
+    It is NOT REQUIRED that *start* remain high until the next rising edge of *symclk*.
+    This timing constraint on the *start* signal MUST be clearly documented in the chip datasheet.
+
+
+The *tx* output signal SHALL go high at the first edge of *symclk* after *start* goes high.
+Signal *tx* SHALL remain high for the number of *symclk* periods contained in the value of the input configuration signal *nbits[7:0]* and then *tx* SHALL return low.
+
+The internal 128-bit register SHALL perform a circular shift operation with the *reg[127]* flip-flop output connected to the *reg[0]* flip-flop's D input.
+After 128 *symclk* pulses after starting a transmission triggered by *start*, the register MUST stop shifting if *start* is low.
+The register SHALL contain the same data in the same order as was loaded on the last rising edge of *load*.
+The net effect of this is to allow repeated transmission of the same data packet without requiring a repeated SPI transaction with identical contents.
+
+The next data transmission SHALL NOT start until at least 128 periods of the *symclk* signal.
+If there has not been another rising edge of *load*, a next rising edge of *start* SHALL initiate another data transmission with the same contents as the previous transmission cycle.
+If *start* remains high by the end of a packet transmission cycle, another packet transmission SHALL start on the next edge of *symclk*.
+This edge is the 129th edge counting from the first *symclk* edge after the original rising edge of *start*.
+
+
+
+
 
 When input ``mode = 0``, the contents of the internal data register are shifted out at each rising edge of *symclk* beginning with the most-significant bit.
 This signal SHALL appear at output pin *fsel*.
@@ -288,10 +330,18 @@ Pin *symbol[1]* remains ``0`` in this mode.
 .. figure:: fig/data-controller.png
     :width: 340pt
 
-    Numerically-controlled oscillator diagram and signals.
+    Data Controller input and output signals.
 
 
 
+
+..  /*
+        This block is how to get a live-rendered WaveDrom image in the HTML
+        version and a corresponding image in the TEX/PDF version.  In
+        cooperation with "fig/Makefile", export the image rendered in the HTML
+        version as SVG and place under the same name as the JSON version.  The
+        Makefile will call Inkscape to generate a PDF for display in the pdfTEX
+        output.
 
 .. raw:: html
 
@@ -307,7 +357,13 @@ Pin *symbol[1]* remains ``0`` in this mode.
 .. figure:: fig/timing-datactl-mode0
 
     Timing diagram for sending the top 6 bits of an 8-bit data vector.
+    **NOTE:** this is only an example, using data vector of 8-bits only, the project uses a data vector of 128 bits in length.
 
+..      </end> block for timing diagrams
+    */
+
+
+** *TODO* ** ``mode = 1`` description
 
 
 ------------------------------------------
@@ -319,10 +375,16 @@ The current state of the phase accumulator register and *fcw[7:0]* SHALL be adde
 This causes the accumulator to increment its state by the value of *fcw* at each clock cycle.
 
 
+.. figure:: fig/nco-block.png
+    :width: 340pt
+
+    Numerically-controlled oscillator block with input and output signals.
+
+
 .. figure:: fig/nco.png
     :width: 340pt
 
-    Numerically-controlled oscillator diagram and signals.
+    Numerically-controlled oscillator internal construction.
 
 
 Only the most-significant bit of the phase accumulator SHALL used as the output signal.
@@ -350,7 +412,7 @@ See reference [WP-NCO] for more information about NCO output characteristics.
 Symbol rate clock generator
 ------------------------------------------
 This block SHALL be a second instance of the NCO.
-Both NCOs SHALL be clocked from the same source and therefore operate in the same clock domain.
+Both NCOs SHALL be clocked from the same source and therefore operate in the same clock domain *clk*.
 
 The 8-bit frequency control word for this NCO SHALL be provided from a separate 8-bit sub-vector of the SPI configuration data.
 The output signal of this block SHALL be named *symclk* and is the source of the signal when referred to in other parts of this document.
@@ -391,16 +453,17 @@ For QAM mode (``mode == 1``), the 2-bit input *symbol[1:0]* determines which sin
 .. table:: Symbol to antenna switch mapping table.
 
 
-    ======  ======  =============   =============
-     mode    fmod    symbol[1:0]     switch[2:0]
-    ======  ======  =============   =============
-    ``0``   ``0``   ``XX``          ``000``
-    ``0``   ``1``   ``XX``          ``001``
-    ``1``   ``X``   ``00``          ``000``
-    ``1``   ``X``   ``01``          ``001``
-    ``1``   ``X``   ``10``          ``010``
-    ``1``   ``X``   ``11``          ``100``
-    ======  ======  =============   =============
+    ======  ======  ======  =============   =============
+     mode    tx      fmod    symbol[1:0]     switch[2:0]
+    ======  ======  ======  =============   =============
+    ``0``   ``0``   ``X``    ``XX``          ``000``
+    ``0``   ``1``   ``0``    ``XX``          ``000``
+    ``0``   ``1``   ``1``    ``XX``          ``001``
+    ``1``   ``X``   ``X``    ``00``          ``000``
+    ``1``   ``X``   ``X``    ``01``          ``001``
+    ``1``   ``X``   ``X``    ``10``          ``010``
+    ``1``   ``X``   ``X``    ``11``          ``100``
+    ======  ======  ======  =============   =============
 
 
 
