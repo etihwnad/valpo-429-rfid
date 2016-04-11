@@ -29,6 +29,7 @@ Backscatter RFID Chip
     <script src="http://wavedrom.com/skins/default.js" type="text/javascript"></script>
     <script src="http://wavedrom.com/wavedrom.min.js" type="text/javascript"></script>
     <body onload="WaveDrom.ProcessAll()">
+    <meta http-equiv="refresh" content="10"> // TEMPORARY
 
 
 
@@ -306,6 +307,7 @@ Pin *symbol[1]* remains ``0`` in this mode.
 .. figure:: fig/timing-datactl-mode0
 
     Timing diagram for sending the top 6 bits of an 8-bit data vector.
+
 
 
 ------------------------------------------
