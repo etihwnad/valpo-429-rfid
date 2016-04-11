@@ -21,7 +21,16 @@ Backscatter RFID Chip
 
     \pdfpxdimen=1in % 1 DPI
     \divide\pdfpxdimen by 96
-    \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+..  \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+.. raw:: html
+
+    <script src="http://wavedrom.com/skins/default.js" type="text/javascript"></script>
+    <script src="http://wavedrom.com/wavedrom.min.js" type="text/javascript"></script>
+    <body onload="WaveDrom.ProcessAll()">
+
+
 
 .. |pm| unicode:: 0xB1 .. plus-minus sign
 
@@ -259,9 +268,10 @@ Data Transmit Controller
 This block SHALL accept an input data vector and configuration from the SPI interface and coordinate the sending of those bits to the modulation system made up of the NCO and switch mapper.
 A data packet transmission SHALL begin on the first rising edge of the *symclk* signal after a rising edge on the *start* signal.
 The *tx* output signal SHALL go high synchronized by first edge of *symclk* after *start* goes high.
-Signal *tx* SHALL remain high for the number of *symclk* periods contained in the value of the input configuration signal *ndata[7:0]*.
+Signal *tx* SHALL remain high for the number of *symclk* periods contained in the value of the input configuration signal *nbits[7:0]*.
 
-At the rising edge of *start* the current value of the *data[127:0]* configuration vector SHALL be captured into
+At the rising edge of *start* the current value of the *data[127:0]* configuration vector SHALL be captured into an internal 128-bit register.
+This internal 128-bit register SHALL be used for shifting out the data.
 
 When input ``mode = 0``, the contents of the internal data register are shifted out at each rising edge of *symclk* beginning with the most-significant bit.
 This signal SHALL appear at output pin *fsel*.
@@ -274,36 +284,47 @@ When ``mode = 0`` and the signal *transmit* is ``1``, block shifts out the conte
 Pin *symbol[1]* remains ``0`` in this mode.
 
 
-.. table:: Data Transmit signal states
+.. figure:: fig/data-controller.png
+    :width: 340pt
 
-    ======  ========  ============    =============
-     mode    fmod      symbol[1:0]     switch[2:0]
-    ======  ========  ============    =============
-    ``0``    |up|     ``XX``            asdf
-    ``0``   ``1``     ``XX``          ``001``
-    ``1``   ``X``     ``00``          ``000``
-    ======  ========  ============    =============
+    Numerically-controlled oscillator diagram and signals.
 
 
 
+
+.. raw:: html
+
+    <script type="WaveDrom">
+
+.. raw:: html
+    :file: fig/timing-datactl-mode0.json
+
+.. raw:: html
+
+    </script>
+
+.. figure:: fig/timing-datactl-mode0
+
+    Timing diagram for sending the top 6 bits of an 8-bit data vector.
 
 
 ------------------------------------------
 Numerically-controlled oscillator (NCO)
 ------------------------------------------
 A numerically-controlled oscillator forms the basis of the programmable backscatter frequency control for both channel selection and frequency-shift-keying (FSK) modulation.
-The NCO SHALL use two 8-bit frequency control words, *fcw0[7:0]* and *fcw1[7:0]*, which are applied to a multiplexer whose output is selected by the state of *fsel*
-The current state of the phase accumulator register and the selected frequency control word SHALL be added, ignoring the carry-out, and used to set the next state of the phase accumulator register.
-This causes the accumulator to increment its state by the value of the selected *fcw* at each clock cycle.
+The NCO SHALL use an 8-bit frequency control word *fcw[7:0]*.
+The current state of the phase accumulator register and *fcw[7:0]* SHALL be added, ignoring the carry-out, and used to set the next state of the phase accumulator register.
+This causes the accumulator to increment its state by the value of *fcw* at each clock cycle.
 
 
 .. figure:: fig/nco.png
-    :width: 80%
+    :width: 340pt
 
     Numerically-controlled oscillator diagram and signals.
 
 
-Only the most-significant bit of the phase accumulator SHALL used as the output signal, which is a square wave at an average frequency of:
+Only the most-significant bit of the phase accumulator SHALL used as the output signal.
+This *out* signal is a square wave at an average frequency of:
 
 .. math::
 
@@ -324,11 +345,27 @@ See reference [WP-NCO] for more information about NCO output characteristics.
 
 
 ------------------------------------------
+Symbol rate clock generator
+------------------------------------------
+This block SHALL be a second instance of the NCO.
+Both NCOs SHALL be clocked from the same source and therefore operate in the same clock domain.
+
+The 8-bit frequency control word for this NCO SHALL be provided from a separate 8-bit sub-vector of the SPI configuration data.
+The output signal of this block SHALL be named *symclk* and is the source of the signal when referred to in other parts of this document.
+
+
+------------------------------------------
 Frequency Control Word multiplexer
 ------------------------------------------
+In order to implement frequency-shift keying (FSK) modulation, the NCO must have its *fcw* toggled between two values.
+A multiplexer SHALL switch its output between two 8-bit values *in0[7:0]* and *in1[7:0]* according to the state of input signal *sel*.
+When ``sel = 0``, the *in0* vector SHALL be passed to the output.
+When ``sel = 1``, the *in1* vector SHALL be passed to the output.
+
+All input signals to the multiplexer, *in0*, *in1*, and *sel* MUST be synchronized by the same clock used to drive the NCO.
 
 .. figure:: fig/mux-8x2.png
-    :width: 80%
+    :width: 340pt
 
     8-bit multiplexer to select between two input control words to apply to the NCO's *fcw* input port.
 
@@ -344,7 +381,7 @@ For QAM mode (``mode == 1``), the 2-bit input *symbol[1:0]* determines which sin
 
 
 .. figure:: fig/sym-switch.png
-    :width: 80%
+    :width: 340pt
 
     Switch state mapping block diagram.  See the table "Symbol to antenna switch mapping table" for the decoding.
 

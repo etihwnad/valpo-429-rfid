@@ -17,13 +17,15 @@ html=$(patsubst %.rst,%.html,$(src))
 SHELL=/bin/bash
 
 
+.PHONY: clean fig
+
 .SECONDARY:
 
 all: pdf html
 
 pdf: $(pdf)
 
-html: $(html)
+html: $(html) fig
 
 gitversion.txt: $(src)
 	@echo "re-creating gitversion.txt"
@@ -32,19 +34,21 @@ gitversion.txt: $(src)
 	@echo ".. |version| replace:: $$(git describe --tags --long)" >> $@
 	@echo "" >> $@
 
+fig:
+	$(MAKE) -C fig
+
 %.tex: %.rst gitversion.txt
 	rst2latex $(RST2TEXOPTS) $< > $@
 	@#remove image extension to use better version (pdf) if available
 	perl -p -i -e 's/\.png//' $@
 
-%.pdf: %.tex
+%.pdf: %.tex fig
 	rubber --pdf $<
 	rubber --clean $<
 
 %.html: %.rst gitversion.txt
 	rst2html $(RST2HTMLOPTS) $< > $@
 
-.PHONY: clean
 clean:
 	rubber --clean $(tex)
 

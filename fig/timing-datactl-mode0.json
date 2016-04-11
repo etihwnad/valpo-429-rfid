@@ -1,0 +1,18 @@
+{signal: [
+  ['Outputs',
+   	['',
+     {name: 'sym[0]', wave: '0.2222220..', data:'d[7] d[6] d[5] d[4] d[3] d[2]'},
+     	{name: 'sym[0]', wave: '0.1.0..10..'},
+    ],
+  	{name: 'tx',     wave: '0.1.....0..'},
+  ],
+  ['Inputs',
+  	{name: 'symclk', wave: 'P..........'},
+  	{name: 'data[7:0]', wave: '2.x........', data: '0xC5'},
+  	{name: 'nbits[3:0]', wave: '2.x........', data: '0x6'},
+  	{name: 'start',  wave: '01.........'},
+  	{name: 'mode',   wave: '0..........'},
+  ],
+  ],
+  foot: {tock: -1,},
+ }
