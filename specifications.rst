@@ -275,6 +275,12 @@ Subsystem Interconnection
 ------------------------------------------
 Data Transmit Controller
 ------------------------------------------
+.. sidebar:: The Data Transmit Controller will NOT be implemented on-chip for this project.
+
+    Its functions will be handled by an external controlling processor, like an MSP430-based microcontroller, with extra off-chip pins.
+    These pins are indicated by the red squares in the system block diagram.
+
+
 This block SHALL accept an input data vector and configuration from the SPI interface and coordinate the sending of those bits to the modulation system made up of the NCO and switch mapper.
 
 At the rising edge of *load* the current value of the *data[127:0]* configuration vector SHALL be captured into an internal 128-bit register.
