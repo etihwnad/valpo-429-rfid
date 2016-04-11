@@ -355,6 +355,7 @@ Pin *symbol[1]* remains ``0`` in this mode.
     </script>
 
 .. figure:: fig/timing-datactl-mode0
+    :width: 100%
 
     Timing diagram for sending the top 6 bits of an 8-bit data vector.
     **NOTE:** this is only an example, using data vector of 8-bits only, the project uses a data vector of 128 bits in length.
