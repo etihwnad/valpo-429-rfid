@@ -1,3 +1,4 @@
+// Timing diagram for sending 6 bits of an 8-bit data vector
 {signal: [
   ['Outputs',
    	['',
