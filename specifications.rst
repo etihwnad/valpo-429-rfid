@@ -21,6 +21,7 @@ Backscatter RFID Chip
 
     \pdfpxdimen=1in % 1 DPI
     \divide\pdfpxdimen by 96
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
 .. |pm| unicode:: 0xB1 .. plus-minus sign
 
@@ -320,6 +321,16 @@ See reference [WP-NCO] for more information about NCO output characteristics.
 
 .. [WP-NCO] https://en.wikipedia.org/wiki/Numerically_controlled_oscillator
 
+
+
+------------------------------------------
+Frequency Control Word multiplexer
+------------------------------------------
+
+.. figure:: fig/mux-8x2.png
+    :width: 80%
+
+    8-bit multiplexer to select between two input control words to apply to the NCO's *fcw* input port.
 
 
 --------------------------------------
