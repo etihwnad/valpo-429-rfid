@@ -491,6 +491,15 @@ The other terminal of the resistors SHALL be connected to node *antref* which SH
 The source terminal of the ``switch[0]`` transistor SHALL be connected directly to the *antref* node.
 Pin *ANTREF* SHALL be assumed to be nominally at the system's lowest voltage, but the pin SHALL NOT be connected internally to any other "ground-like" node.
 
+The chip datasheet SHALL provide an estimate of the antenna port impedance magnitude and phase as a function of frequency for all four valid switch states.
+These frequencies SHALL include at least the entire ranges of the 434 MHz, 915 MHz, 2450 MHz, and 5800 MHz Industrial, Scientific, and Medical (ISM) bands that are allowed under the FCC's Part 15 rules.
+
+The antenna port impedance SHALL be considered as the impedance looking into the pin of the package through to the switches on the die.
+Package bond wire effects MUST be estimated and included as a part of the port impedance.
+
+For estimation purposes, the package SHALL be the ``OCP_QFN_12X12_80A`` 80-pin package at the `MOSIS Open Cavity Plastic Packages`_ website.
+
+.. _`MOSIS Open Cavity Plastic Packages`: https://www.mosis.com/db/pubf/WEBREPORTS?REQUEST=OpenCavity
 
 ------------------------------------------
 Charge pump
