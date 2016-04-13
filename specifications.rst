@@ -381,6 +381,9 @@ The NCO SHALL use an 8-bit frequency control word *fcw[7:0]*.
 The current state of the phase accumulator register and *fcw[7:0]* SHALL be added, ignoring the carry-out, and used to set the next state of the phase accumulator register.
 This causes the accumulator to increment its state by the value of *fcw* at each clock cycle.
 
+The NCO SHALL properly operate with a MINIMUM *clk* frequency of 20 MHz.
+The chip datasheet SHALL clearly specify the estimated maximum *clk* frequency.
+
 
 .. figure:: fig/nco-block.png
     :width: 340pt
