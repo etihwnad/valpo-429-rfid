@@ -29,7 +29,7 @@ Backscatter RFID Chip
     <script src="http://wavedrom.com/skins/default.js" type="text/javascript"></script>
     <script src="http://wavedrom.com/wavedrom.min.js" type="text/javascript"></script>
     <body onload="WaveDrom.ProcessAll()">
-    <meta http-equiv="refresh" content="10"> // TEMPORARY
+    <meta http-equiv="refresh" content="10"><!-- // TEMPORARY -->
 
 
 
@@ -497,9 +497,11 @@ These frequencies SHALL include at least the entire ranges of the 434 MHz, 915 M
 The antenna port impedance SHALL be considered as the impedance looking into the pin of the package through to the switches on the die.
 Package bond wire effects MUST be estimated and included as a part of the port impedance.
 
-For estimation purposes, the package SHALL be the ``OCP_QFN_12X12_80A`` 80-pin package at the `MOSIS Open Cavity Plastic Packages`_ website.
+For estimation purposes, the package SHALL be the ``OCP_QFN_12X12_80A`` 80-pin package at the *MOSIS Open Cavity Plastic Packages* website found at reference [MOSIS-OCP].
 
-.. _`MOSIS Open Cavity Plastic Packages`: https://www.mosis.com/db/pubf/WEBREPORTS?REQUEST=OpenCavity
+.. [MOSIS-OCP] https://www.mosis.com/db/pubf/WEBREPORTS?REQUEST=OpenCavity
+
+
 
 ------------------------------------------
 Charge pump
