@@ -1,0 +1,23 @@
+
+
+Tasks
+	[_] 0% Collect subprojects
+		[_] SPI
+		[_] FCW mux
+		[_] NCO
+		[_] Switch mapper
+		[_] Antenna switches
+		[_] Charge pump
+	[_] 0% Cleanup subcells
+		[_] SPI
+		[_] FCW mux
+		[_] NCO
+		[_] Switch mapper
+		[_] Antenna switches
+		[_] Charge pump
+
+
+
+
+
+# vim: ft=votl
