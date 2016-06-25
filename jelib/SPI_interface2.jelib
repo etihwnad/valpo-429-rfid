@@ -1,5 +1,5 @@
 # header information:
-HSPI_interface2|9.04
+HSPI_interface2|9.06
 
 # Views:
 Vicon|ic
@@ -39,7 +39,7 @@ EQ||D5G2;X1;|pin@6||U
 X
 
 # Cell DFF;1{lay}
-CDFF;1{lay}||mocmos|1462483504768|1462581408290||DRC_last_good_drc_area_date()G1462578849224|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462585239576
+CDFF;1{lay}||mocmos|1462483504768|1462581408290||DRC_last_good_drc_area_date()G1466857032192|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462585239576
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-P-Active-Con|contact@0||-40|22.5|15||R|
 NMetal-1-P-Active-Con|contact@1||-30|22.5|15||R|
@@ -555,7 +555,7 @@ ESET_bar||D5G2;Y2;|pin@12||U
 X
 
 # Cell DFF_setClr;1{lay}
-CDFF_setClr;1{lay}||mocmos|1462578949624|1462589337346||DRC_last_good_drc_area_date()G1462584623503|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462590811371
+CDFF_setClr;1{lay}||mocmos|1462578949624|1462589337346||DRC_last_good_drc_area_date()G1466857052933|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462590811371
 INAND;1{lay}|NAND@1||88.5|6|X||D5G4;
 INAND;1{lay}|NAND@2||93.5|-113.5|||D5G4;
 INAND;1{lay}|NAND@3||238|6|X||D5G4;
@@ -1128,7 +1128,7 @@ EB||D5G2;X-1;|pin@2||U
 X
 
 # Cell NAND;1{lay}
-CNAND;1{lay}||mocmos|1462480288882|1462754070687||DRC_last_good_drc_area_date()G1462581112640|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462581112640
+CNAND;1{lay}||mocmos|1462480288882|1462754070687||DRC_last_good_drc_area_date()G1466857057777|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466857052933
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-N-Active-Con|contact@19||-11|-18.5|5||R|
 NMetal-1-P-Active-Con|contact@20||-12|9.5|15||RRR|
@@ -1228,8 +1228,39 @@ EAnandB||D5G2;|conn@2|y|U
 EB||D5G2;X-1;|conn@1|a|U
 X
 
+# Cell Wrapper;1{ic}
+CWrapper;1{ic}||artwork|1466858563360|1466859051716|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOpened-Thicker-Polygon|art@1||6|0|18|18|||trace()V[-9/-9,-9/9,9/9,9/-9,-9/-9]
+Nschematic:Bus_Pin|pin@0||-5|-4||||
+Nschematic:Wire_Pin|pin@1||-3|-4||||
+Nschematic:Bus_Pin|pin@2||17|2||||
+Nschematic:Wire_Pin|pin@3||15|2||||
+Nschematic:Bus_Pin|pin@4||-5|2||||
+Nschematic:Wire_Pin|pin@5||-3|2||||
+Nschematic:Bus_Pin|pin@6||-5|-7||||
+Nschematic:Wire_Pin|pin@7||-3|-7||||
+Nschematic:Bus_Pin|pin@8||-5|-1||||
+Nschematic:Wire_Pin|pin@9||-3|-1||||
+Nschematic:Bus_Pin|pin@10||17|-2||||
+Nschematic:Wire_Pin|pin@11||15|-2||||
+Ngeneric:Invisible-Pin|pin@12||6|6|||||ART_message(D5G4;)SSPI
+Aschematic:wire|net@0|||0|pin@1||-3|-4|pin@0||-5|-4
+Aschematic:wire|net@1|||1800|pin@3||15|2|pin@2||17|2
+Aschematic:wire|net@2|||0|pin@5||-3|2|pin@4||-5|2
+Aschematic:wire|net@3|||0|pin@7||-3|-7|pin@6||-5|-7
+Aschematic:wire|net@4|||0|pin@9||-3|-1|pin@8||-5|-1
+Aschematic:wire|net@5|||1800|pin@11||15|-2|pin@10||17|-2
+ECS||D6G2;X3;|pin@0||I
+EMISO||D4G2;X-3;|pin@2||O
+EMOSI||D6G2;X3;|pin@4||I
+EReset||D6G2;X3;|pin@6||I
+ESCK||D6G2;X3;|pin@8||I
+Eout[0]|out[31:0]|D4G2;X-3;|pin@10||O
+X
+
 # Cell Wrapper;1{lay}
-CWrapper;1{lay}||mocmos|1462480253364|1462752936553||DRC_last_good_drc_area_date()G1462752821880|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462752821880
+CWrapper;1{lay}||mocmos|1462480253364|1466859174223||DRC_last_good_drc_area_date()G1466859182068|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466859182068
 IDFF;1{lay}|DFF@0||-34|81|||D5G4;
 IDFF;1{lay}|DFF@1||228.5|80.5|||D5G4;
 IDFF;1{lay}|DFF@2||487|81|||D5G4;
@@ -4833,49 +4864,49 @@ AMetal-2|net@3493||1|S0|pin@1389||-112|932.5|contact@635||-174|932.5
 AMetal-2|net@3494||3|S900|contact@1062||-112|933|pin@1389||-112|932.5
 AMetal-3|net@3495||1|S900|contact@1062||-112|933|pin@1390||-112|416.5
 AMetal-3|net@3496||1|S1800|contact@1023||-113|416.5|pin@1390||-112|416.5
-EBIT0|Bit_0|D5G2;|pin@1298||U
-EBIT1|Bit_1|D5G2;|pin@1299||U
-EBIT2|Bit_2|D5G2;|pin@1300||U
-EBIT3|Bit_3|D5G2;|pin@1301||U
-EBit_4||D5G2;|pin@1303||U
-EBit_5||D5G2;|pin@1305||U
-EBit_6||D5G2;|pin@1306||U
-EBit_7||D5G2;|pin@1308||U
-EBit_8||D5G2;|pin@1309||U
-EBit_9||D5G2;|pin@1311||U
-EBit_10||D5G2;|pin@1312||U
-EBit_11||D5G2;|pin@1315||U
-EBit_13|Bit_12|D5G2;|pin@1316||U
-EBit_13@318393406|Bit_13|D5G2;|pin@1318||U
-EBit_14||D5G2;|pin@1319||U
-EBit_15||D5G2;|pin@1320||U
-EBit_16||D5G2;|pin@1321||U
-EBit_17||D5G2;|pin@1323||U
-EBit_18||D5G2;|pin@1324||U
-EBit_19||D5G2;|pin@1325||U
-EBit_20||D5G2;|pin@1326||U
-EBit_21||D5G2;|pin@1328||U
-EBit_22||D5G2;|pin@1329||U
-EBit_23||D5G2;|pin@1331||U
-EBit_24||D5G2;|pin@1332||U
-EBit_25||D5G2;|pin@1333||U
-EBit_26||D5G2;|pin@1334||U
-EBit_27||D5G2;|pin@1336||U
-EBit_28||D5G2;|pin@1337||U
-EBit_29||D5G2;|pin@1339||U
-EBit_30||D5G2;|pin@1340||U
-EBit_31||D5G2;|pin@1341||U
 ECS||D5G10;X-10;|pin@1006||U
-EMISO||D5G2;|pin@469||U
+EMISO||D5G2;|pin@469||O
 EMOSI||D5G10;X-16;|pin@492||U
 EReset||D5G10;X-16;Y0.5;|pin@1004||U
 ESCK||D5G10;X-15.5;|pin@473||U
 Egnd||D5G10;X-13;|pin@1125||U
+EBIT0|out[0]|D5G2;|pin@1298||U
+EBIT1|out[1]|D5G2;|pin@1299||U
+EBIT2|out[2]|D5G2;|pin@1300||U
+EBIT3|out[3]|D5G2;|pin@1301||U
+EBit_4|out[4]|D5G2;|pin@1303||U
+EBit_5|out[5]|D5G2;|pin@1305||U
+EBit_6|out[6]|D5G2;|pin@1306||U
+EBit_7|out[7]|D5G2;|pin@1308||U
+EBit_8|out[8]|D5G2;|pin@1309||U
+EBit_9|out[9]|D5G2;|pin@1311||U
+EBit_10|out[10]|D5G2;|pin@1312||U
+EBit_11|out[11]|D5G2;|pin@1315||U
+EBit_13|out[12]|D5G2;|pin@1316||U
+EBit_13@318393406|out[13]|D5G2;|pin@1318||U
+EBit_14|out[14]|D5G2;|pin@1319||U
+EBit_15|out[15]|D5G2;|pin@1320||U
+EBit_16|out[16]|D5G2;|pin@1321||U
+EBit_17|out[17]|D5G2;|pin@1323||U
+EBit_18|out[18]|D5G2;|pin@1324||U
+EBit_19|out[19]|D5G2;|pin@1325||U
+EBit_20|out[20]|D5G2;|pin@1326||U
+EBit_21|out[21]|D5G2;|pin@1328||U
+EBit_22|out[22]|D5G2;|pin@1329||U
+EBit_23|out[23]|D5G2;|pin@1331||U
+EBit_24|out[24]|D5G2;|pin@1332||U
+EBit_25|out[25]|D5G2;|pin@1333||U
+EBit_26|out[26]|D5G2;|pin@1334||U
+EBit_27|out[27]|D5G2;|pin@1336||U
+EBit_28|out[28]|D5G2;|pin@1337||U
+EBit_29|out[29]|D5G2;|pin@1339||U
+EBit_30|out[30]|D5G2;|pin@1340||U
+EBit_31|out[31]|D5G2;|pin@1341||U
 Evdd||D5G10;X-10;|pin@1128||U
 X
 
 # Cell Wrapper;1{sch}
-CWrapper;1{sch}||schematic|1460745426188|1462827170767|
+CWrapper;1{sch}||schematic|1460745426188|1466858563371|
 IDFF;1{ic}|DFF@1||-5.5|7|||D5G4;
 IDFF;1{ic}|DFF@26||17.5|7|||D5G4;
 IDFF;1{ic}|DFF@27||40|7|||D5G4;
@@ -4940,6 +4971,7 @@ IDFF_setClr;1{ic}|DFF_setC@28||628.5|38|||D5G4;
 IDFF_setClr;1{ic}|DFF_setC@29||651|38|||D5G4;
 IDFF_setClr;1{ic}|DFF_setC@30||672|38|||D5G4;
 IDFF_setClr;1{ic}|DFF_setC@31||693|38|||D5G4;
+IWrapper;1{ic}|Wrapper@0||712|102|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@1||-26|10||||
 NOff-Page|conn@2||-26|7||||
@@ -6214,43 +6246,43 @@ Awire|net@2309|||1800|pin@26||-18|-5|pin@569||9|-5
 Awire|net@2310|||1800|pin@726||518|62|pin@727||539|62
 Awire|net@2311|||1800|pin@727||539|62|pin@1156||564|62
 Awire|net@2312|||1800|pin@30||-12.5|-2|pin@567||8|-2
-EBit_0||D5G2;|conn@32|y|U
-EBit_1||D5G2;|conn@31|y|U
-EBit_2||D5G2;|conn@30|y|U
-EBit_3||D5G2;|conn@29|y|U
-EBit_4||D5G2;|conn@28|y|U
-EBit_5||D5G2;|conn@27|y|U
-EBit_6||D5G2;|conn@26|y|U
-EBit_7||D5G2;|conn@25|y|U
-EBit_8||D5G2;|conn@24|y|U
-EBit_9||D5G2;|conn@23|y|U
-EBit_10||D5G2;|conn@22|y|U
-EBit_11||D5G2;|conn@21|y|U
-EBit_12||D5G2;|conn@20|y|U
-EBit_13||D5G2;|conn@19|y|U
-EBit_14||D5G2;|conn@18|y|U
-EBit_15||D5G2;|conn@17|y|U
-EBit_16||D5G2;|conn@16|y|U
-EBit_17||D5G2;|conn@15|y|U
-EBit_18||D5G2;|conn@14|y|U
-EBit_19||D5G2;|conn@13|y|U
-EBit_20||D5G2;|conn@11|y|U
-EBit_21||D5G2;|conn@12|y|U
-EBit_22||D5G2;|conn@9|y|U
-EBit_23||D5G2;|conn@8|y|U
-EBit_24||D5G2;X-0.5;|conn@7|y|U
-EBit_25||D5G2;|conn@42|y|U
-EBit_26||D5G2;|conn@41|a|U
-EBit_27||D5G2;|conn@39|y|U
-EBit_28||D5G2;|conn@40|a|U
-EBit_29||D5G2;|conn@38|y|U
-EBit_30||D5G2;|conn@37|y|U
-EBit_31||D5G2;|conn@36|y|U
-ECS||D5G2;X-6;|conn@6|y|U
-EMISO||D5G2;|conn@43|y|U
-EMOSI||D5G2;X-3;|conn@1|a|U
-EReset||D5G2;X-3;|conn@4|a|U
-ESCK||D5G2;X-2.5;|conn@2|a|U
+ECS||D5G2;X-6;|conn@6|y|I
+EMISO||D5G2;|conn@43|y|O
+EMOSI||D5G2;X-3;|conn@1|a|I
+EReset||D5G2;X-3;|conn@4|a|I
+ESCK||D5G2;X-2.5;|conn@2|a|I
+EBit_0|out[0]|D5G2;|conn@32|y|O
+EBit_1|out[1]|D5G2;|conn@31|y|O
+EBit_2|out[2]|D5G2;|conn@30|y|O
+EBit_3|out[3]|D5G2;|conn@29|y|O
+EBit_4|out[4]|D5G2;|conn@28|y|O
+EBit_5|out[5]|D5G2;|conn@27|y|O
+EBit_6|out[6]|D5G2;|conn@26|y|O
+EBit_7|out[7]|D5G2;|conn@25|y|O
+EBit_8|out[8]|D5G2;|conn@24|y|O
+EBit_9|out[9]|D5G2;|conn@23|y|O
+EBit_10|out[10]|D5G2;|conn@22|y|O
+EBit_11|out[11]|D5G2;|conn@21|y|O
+EBit_12|out[12]|D5G2;|conn@20|y|O
+EBit_13|out[13]|D5G2;|conn@19|y|O
+EBit_14|out[14]|D5G2;|conn@18|y|O
+EBit_15|out[15]|D5G2;|conn@17|y|O
+EBit_16|out[16]|D5G2;|conn@16|y|O
+EBit_17|out[17]|D5G2;|conn@15|y|O
+EBit_18|out[18]|D5G2;|conn@14|y|O
+EBit_19|out[19]|D5G2;|conn@13|y|O
+EBit_20|out[20]|D5G2;|conn@11|y|O
+EBit_21|out[21]|D5G2;|conn@12|y|O
+EBit_22|out[22]|D5G2;|conn@9|y|O
+EBit_23|out[23]|D5G2;|conn@8|y|O
+EBit_24|out[24]|D5G2;X-0.5;|conn@7|y|O
+EBit_25|out[25]|D5G2;|conn@42|y|O
+EBit_26|out[26]|D5G2;|conn@41|a|O
+EBit_27|out[27]|D5G2;|conn@39|y|O
+EBit_28|out[28]|D5G2;|conn@40|a|O
+EBit_29|out[29]|D5G2;|conn@38|y|O
+EBit_30|out[30]|D5G2;|conn@37|y|O
+EBit_31|out[31]|D5G2;|conn@36|y|O
 X
 
 # Cell inv;1{ic}
