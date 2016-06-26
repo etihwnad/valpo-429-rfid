@@ -1,22 +1,31 @@
 
 
 Tasks
-	[_] 33% Collect subprojects
-		[X] SPI
-		[X] FCW mux
-		[_] NCO
-		[_] Switch mapper
-		[_] Antenna switches
-		[_] Charge pump
-	[_] 33% Cleanup subcells
+	[_] 50% Cleanup subprojects
 		[X] SPI
 			[X] Change names to bus notation
+			[X] DRC clean
+			[X] NCC pass
 		[X] FCW mux
 			[X] Change names to bus notation
-		[_] NCO
+			[X] DRC clean
+			[X] NCC pass
+		[X] NCO
+			[X] Change names to bus notation
+			[X] DRC clean
+			[X] NCC pass
 		[_] Switch mapper
+			[_] Change names to bus notation
+			[_] DRC clean
+			[_] NCC pass
 		[_] Antenna switches
+			[_] Change names to bus notation
+			[_] DRC clean
+			[_] NCC pass
 		[_] Charge pump
+			[_] Change names to bus notation
+			[_] DRC clean
+			[_] NCC pass
 
 
 
