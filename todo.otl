@@ -1,7 +1,7 @@
 
 
 Tasks
-	[_] 50% Cleanup subprojects
+	[_] 66% Cleanup subprojects
 		[X] SPI
 			[X] Change names to bus notation
 			[X] DRC clean
@@ -14,10 +14,10 @@ Tasks
 			[X] Change names to bus notation
 			[X] DRC clean
 			[X] NCC pass
-		[_] Switch mapper
-			[_] Change names to bus notation
-			[_] DRC clean
-			[_] NCC pass
+		[X] Switch mapper
+			[X] Change names to bus notation
+			[X] DRC clean
+			[X] NCC pass
 		[_] Antenna switches
 			[_] Change names to bus notation
 			[_] DRC clean
