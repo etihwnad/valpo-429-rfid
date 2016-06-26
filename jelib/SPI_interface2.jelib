@@ -7,6 +7,8 @@ Vlayout|lay
 Vschematic|sch
 
 # Technologies:
+Tbicmos|ScaleFORbicmos()D300.0
+Tcmos|ScaleFORcmos()D300.0
 Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
 Ttft|ScaleFORtft()D300.0
 
@@ -1260,7 +1262,7 @@ Eout[0]|out[31:0]|D4G2;X-3;|pin@10||O
 X
 
 # Cell Wrapper;1{lay}
-CWrapper;1{lay}||mocmos|1462480253364|1466859174223||DRC_last_good_drc_area_date()G1466859182068|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466859182068
+CWrapper;1{lay}||mocmos|1462480253364|1466928390606||DRC_last_good_drc_area_date()G1466929778753|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466929778753
 IDFF;1{lay}|DFF@0||-34|81|||D5G4;
 IDFF;1{lay}|DFF@1||228.5|80.5|||D5G4;
 IDFF;1{lay}|DFF@2||487|81|||D5G4;
@@ -2898,7 +2900,6 @@ NMetal-2-Pin|pin@1387||-184.5|1156.5||||
 NMetal-3-Pin|pin@1388||-254.5|1156||||
 NMetal-2-Pin|pin@1389||-112|932.5||||
 NMetal-3-Pin|pin@1390||-112|416.5||||
-Ngeneric:Invisible-Pin|pin@1391||-70|1244|||||SIM_spice_card(D5G10;)S[VGND GND 0 DC 0,VVDD VDD 0 DC 1,VRE Reset 0 DC PULSE 1 0 100n 10p 10p 400n 40u,VCLK SCK 0 DC 0 PULSE 0 1 0 10p 10p 250n 500n,VMOSI MOSI 0 DC 0 PULSE 0 1 15.125u 10p 10p 500n 1000n,VCS CS 0 DC 0 PULSE 1 0 9.875u 10p 10p 5u 10u,".include S:\\COE\\ECE 429\\SPI Interface\\c5.txt",.tran 40u UIC,*.options post]
 AMetal-1|net@2||1|S1800|contact@4||-103.5|-45|pin@1||-103|-45
 AMetal-1|net@3||1|S900|DFF@0|gnd|-103|-33.5|pin@1||-103|-45
 AMetal-2|net@5||1|S2700|pin@2||153.5|-45|contact@3||153.5|-34
@@ -4906,7 +4907,7 @@ Evdd||D5G10;X-10;|pin@1128||U
 X
 
 # Cell Wrapper;1{sch}
-CWrapper;1{sch}||schematic|1460745426188|1466858563371|
+CWrapper;1{sch}||schematic|1460745426188|1466929367134|
 IDFF;1{ic}|DFF@1||-5.5|7|||D5G4;
 IDFF;1{ic}|DFF@26||17.5|7|||D5G4;
 IDFF;1{ic}|DFF@27||40|7|||D5G4;
@@ -5364,7 +5365,6 @@ NWire_Pin|pin@848||530|26||||
 NWire_Pin|pin@849||531|35||||
 NWire_Pin|pin@850||531|29.5||||
 NWire_Pin|pin@868||-17|26||||
-Ngeneric:Invisible-Pin|pin@1053||191.5|68.75|||||SIM_spice_card(D5G1;)S[VGND GND 0 DC 0,VVDD VDD 0 DC 1,VRE Reset 0 DC PULSE 1 0 100n 10p 10p 400n 40u,VCLK SCK 0 DC 0 PULSE 0 1 0 10p 10p 250n 500n,VMOSI MOSI 0 DC 0 PWL 0 0 15.125u 1 17.625u 0 21.125u 1 22.625u 0 27.125u 1 31.125u 0 100u 1,VCS CS 0 DC 0 PULSE 1 0 9.875u 10p 10p 5u 10u,".include S:\\COE\\ECE 429\\SPI Interface\\c5.txt",.tran 40u UIC,*.options post]
 NWire_Pin|pin@1058||169|62||||
 NWire_Pin|pin@1059||-18|7||||
 NWire_Pin|pin@1077||38.5|31||||
@@ -6283,6 +6283,42 @@ EBit_28|out[28]|D5G2;|conn@40|a|O
 EBit_29|out[29]|D5G2;|conn@38|y|O
 EBit_30|out[30]|D5G2;|conn@37|y|O
 EBit_31|out[31]|D5G2;|conn@36|y|O
+X
+
+# Cell Wrapper_test;1{lay}
+CWrapper_test;1{lay}||mocmos|1466930064736|1466939571800||DRC_last_good_drc_area_date()G1466930649814|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466930649814
+IWrapper;1{lay}|Wrapper@0||-21.5|4|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Ngeneric:Invisible-Pin|pin@0||-1269.5|-29|||||SIM_spice_card(D6G50;)S[Vdd vdd 0 5,vgnd gnd 0 0,.include c5.txt,.include spi_test.pwl,.tran 4u]
+NMetal-1-Pin|pin@1||-378|29||||
+NMetal-1-Pin|pin@2||-358|-10.5||||
+NMetal-1-Pin|pin@3||-518|420||||
+NMetal-1-Pin|pin@4||-509.5|562||||
+NMetal-1-Pin|pin@5||-395.5|70||||
+NMetal-1-Pin|pin@6||-404|6||||
+AMetal-1|clock|D5G1;||S0|Wrapper@0|SCK|-295|29|pin@1||-378|29
+AMetal-1|cs|D5G1;||S0|Wrapper@0|CS|-285.5|562|pin@4||-509.5|562
+AMetal-1|gnd|D5G1;||S0|Wrapper@0|gnd|-294.5|6|pin@6||-404|6
+AMetal-1|mosi|D5G1;||S0|Wrapper@0|MOSI|-295|-10.5|pin@2||-358|-10.5
+AMetal-1|rst|D5G1;||S0|Wrapper@0|Reset|-291.5|420|pin@3||-518|420
+AMetal-1|vdd|D5G1;||S0|Wrapper@0|vdd|-300.5|70|pin@5||-395.5|70
+X
+
+# Cell Wrapper_test;1{sch}
+CWrapper_test;1{sch}||schematic|1466928427178|1466929624192|
+IWrapper;1{ic}|Wrapper@0||-12.5|8|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Ngeneric:Invisible-Pin|pin@0||-51.5|14|||||SIM_spice_card(D6G2;)S[Vdd vdd 0 5,vgnd gnd 0 0,.include c5.txt,.include spi_test.pwl,.tran 800n]
+NWire_Pin|pin@1||-28|10||||
+NWire_Pin|pin@2||-27.5|7||||
+NWire_Pin|pin@3||-27.5|4||||
+NWire_Pin|pin@4||-27.5|1||||
+NWire_Pin|pin@5||18|10||||
+Awire|clock|D5G1;||0|Wrapper@0|SCK|-17.5|7|pin@2||-27.5|7
+Awire|cs|D5G1;||0|Wrapper@0|CS|-17.5|4|pin@3||-27.5|4
+Awire|miso|D5G1;||1800|Wrapper@0|MISO|4.5|10|pin@5||18|10
+Awire|mosi|D5G1;||0|Wrapper@0|MOSI|-17.5|10|pin@1||-28|10
+Awire|rst|D5G1;||0|Wrapper@0|Reset|-17.5|1|pin@4||-27.5|1
 X
 
 # Cell inv;1{ic}
