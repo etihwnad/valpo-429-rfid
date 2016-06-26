@@ -1,5 +1,5 @@
 # header information:
-Hchargepump_final|9.04
+Hchargepump_final|9.06
 
 # Views:
 Vicon|ic
@@ -7,10 +7,13 @@ Vlayout|lay
 Vschematic|sch
 
 # Technologies:
+Tbicmos|ScaleFORbicmos()D300.0
+Tcmos|ScaleFORcmos()D300.0
 Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
+Ttft|ScaleFORtft()D300.0
 
 # Cell chargepump;2{lay}
-Cchargepump;2{lay}||mocmos|1461770299501|1462639590360||DRC_last_good_drc_area_date()G1462572501364|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462572501364
+Cchargepump;2{lay}||mocmos|1461770299501|1466927247544||DRC_last_good_drc_area_date()G1466927250141|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466927250141
 Ngeneric:Facet-Center|art@0||0|0||||AV
 Idiode1;1{lay}|diode1@11||-546|-1965|RR||D5G4;
 Idiode1;1{lay}|diode1@12||-546|-1907|RR||D5G4;
@@ -57,7 +60,7 @@ NMetal-1-Pin|pin@152||-2339|-376.5||||
 NMetal-1-Pin|pin@153||-2339|-1904||||
 NMetal-1-Pin|pin@157||-609|1565||||
 NMetal-1-Pin|pin@159||-164|1487||||
-Ngeneric:Invisible-Pin|pin@160||-1555|2359|||||SIM_spice_card(D5G100;)S[V1 in 0 SINE(0 1.5 915Meg 0 0 0),.tran 50u,".include S:\\COE\\ECE 429\\c5n-process\\c5.txt"]
+Ngeneric:Invisible-Pin|pin@160||-1555|2359|||||SIM_spice_card(D5G100;)S[V1 in 0 SINE(0 1.5 915Meg 0 0 0),.tran 50u,.include c5.txt]
 NMetal-1-Pin|pin@161||-54|1483||||
 NMetal-1-Pin|pin@162||-164|1483||||
 Ipolycap;1{lay}|polycap@3||-1487|-1901|RR||D5G4;
@@ -123,7 +126,7 @@ EOUT|out|D5G100;|pin@98||U
 X
 
 # Cell chargepump;1{sch}
-Cchargepump;1{sch}||schematic|1461770310488|1462573748945|
+Cchargepump;1{sch}||schematic|1461770310488|1466926171217|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 Idiode1;1{ic}|diode1@2||-16.5|-2|R||D5G4;
 Idiode1;1{ic}|diode1@3||-10.5|6|||D5G4;
@@ -156,7 +159,6 @@ NWire_Pin|pin@21||14.5|43.5||||
 NWire_Pin|pin@23||-31|7||||
 NWire_Pin|pin@25||-31|43.5||||
 NWire_Pin|pin@26||-31|27||||
-NWire_Pin|pin@29||35.5|43.5||||
 NWire_Pin|pin@33||53|43.5||||
 NWire_Pin|pin@35||23|-10||||
 NWire_Pin|pin@36||-39|7||||
@@ -207,12 +209,11 @@ Awire|net@70|||1800|diode1@3|K|-6|7|pin@15||-3|7
 Awire|net@71|||1800|diode1@5|K|9.5|27|pin@20||14.5|27
 Awire|net@72|||0|pin@21||14.5|43.5|poly2cap@2|b|-23|43.5
 Awire|net@77|||900|pin@35||23|-10|gnd@0||23|-17.5
-Awire|net@87|||1800|pin@29||35.5|43.5|pin@33||53|43.5
 Awire|net@88|||900|pin@3||0|-7|pin@2||0|-10
 Awire|net@89|||1800|diode1@6|K|30|43.5|pin@38||33.5|43.5
 Awire|net@91|||900|pin@38||33.5|43.5|pin@39||33.5|-4
 Awire|net@92|||1800|nmos@2|g|33|-4|pin@39||33.5|-4
-Awire|net@93|||1800|pin@38||33.5|43.5|pin@29||35.5|43.5
+Awire|net@94|||0|pin@33||53|43.5|pin@38||33.5|43.5
 EIN|in|D5G2;|pin@36||U
 Eout||D5G2;|pin@33||U
 X
@@ -231,7 +232,7 @@ EK||D5G2;|pin@3||U
 X
 
 # Cell diode1;1{lay}
-Cdiode1;1{lay}||mocmos|1461114169998|1462572406329||DRC_last_good_drc_area_date()G1461115115377|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462572501364
+Cdiode1;1{lay}||mocmos|1461114169998|1462572406329||DRC_last_good_drc_area_date()G1461115115377|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466926211298
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-Polysilicon-1-Con|contact@0||-60|0||||
 NMetal-1-P-Active-Con|contact@1||0|6|95|||
@@ -263,7 +264,7 @@ EK||D5G2;X1;|pin@5||U
 X
 
 # Cell diode1;1{sch}
-Cdiode1;1{sch}||schematic|1461113769930|1462483195416|
+Cdiode1;1{sch}||schematic|1461113769930|1466926316427|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NWire_Pin|pin@8||1|-3||||
 NWire_Pin|pin@11||-6|0||||
@@ -273,7 +274,7 @@ NWire_Pin|pin@23||-3.5|-3||||
 NWire_Pin|pin@34||3|1||||
 NWire_Pin|pin@37||1|4.5||||
 NWire_Pin|pin@39||-3.5|4.5||||
-N4-Port-Transistor|pmos-4@0||-1|0|||YR|2|ATTR_length(D5G0.5;X-0.5;Y-3;)S2|ATTR_width(D5G1;X1;Y-3;)S10|SIM_spice_model(D5G1;Y-2;)SP
+N4-Port-Transistor|pmos-4@0||-1|0|||YR|2|ATTR_length(D5G0.5;X-0.5;Y-3;)S2|ATTR_width(D5G1;X1;Y-3;)S100|SIM_spice_model(D5G1;Y-2;)SP
 Awire|net@14|||900|pmos-4@0|d|1|-2|pin@8||1|-3
 Awire|net@33|||0|pin@18||-3.5|0|pin@11||-6|0
 Awire|net@39|||0|pin@8||1|-3|pin@23||-3.5|-3
@@ -289,12 +290,12 @@ EK||D5G2;|pin@12||U
 X
 
 # Cell nmoscap;1{lay}
-Cnmoscap;1{lay}||mocmos|1462222897617|1462482684804||DRC_last_good_drc_area_date()G1462223192398|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462482718904
+Cnmoscap;1{lay}||mocmos|1462222897617|1466926363650||DRC_last_good_drc_area_date()G1466926366806|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466926366806
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-N-Active-Con|contact@0||52|109|195.1||RRR|
 NMetal-1-N-Active-Con|contact@1||-57.5|110.5|195.1||RRR|
 NMetal-1-Polysilicon-1-Con|contact@2||-3|213.5||95.2|RRR|
-NN-Transistor|nmos@0||-2.5|109|197.1|98.2|RRR|
+NN-Transistor|nmos@0||-2.5|109|197|98|RRR|
 NMetal-1-Pin|pin@1||-2.5|-8.5||||
 NMetal-1-Pin|pin@2||-5.5|222.5||||
 NMetal-1-Pin|pin@3||-57.5|-2.5||||
@@ -302,7 +303,7 @@ NMetal-1-Pin|pin@4||52|-2.5||||
 NMetal-1-P-Well-Con|substr@0||-2.5|-2.5|95.2|||
 AN-Active|net@1|||S1800|contact@1||-57|109|nmos@0|diff-bottom|-55.5|109
 AN-Active|net@2|||S0|contact@0||51.5|109|nmos@0|diff-top|50.5|109
-APolysilicon-1|net@3|||S900|contact@2||-3|213.5|nmos@0|poly-left|-3|211.05
+APolysilicon-1|net@3|||S900|contact@2||-3|213.5|nmos@0|poly-left|-3|211
 AMetal-1|net@5||2|S900|substr@0||-2.5|-3|pin@1||-2.5|-8.5
 AMetal-1|net@6|||S2700|contact@2||-5.5|213.5|pin@2||-5.5|222.5
 AMetal-1|net@7||1|S900|contact@1||-57.5|110.5|pin@3||-57.5|-2.5
@@ -314,7 +315,7 @@ Etop||D5G2;|pin@2||U
 X
 
 # Cell polycap;1{lay}
-Cpolycap;1{lay}||mocmos|1462216217060|1462572609380||DRC_last_good_drc_area_date()G1462456368879|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1462571339040
+Cpolycap;1{lay}||mocmos|1462216217060|1462572609380||DRC_last_good_drc_area_date()G1462456368879|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466926211298
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-Polysilicon-2-Con|contact@5||-2|5.5|1290|1290||
 NMetal-1-Polysilicon-1-Con|contact@6||13|720|1495|45||
