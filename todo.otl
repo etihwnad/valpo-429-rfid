@@ -1,17 +1,18 @@
 
 
 Tasks
-	[_] 16% Collect subprojects
+	[_] 33% Collect subprojects
 		[X] SPI
-		[_] FCW mux
+		[X] FCW mux
 		[_] NCO
 		[_] Switch mapper
 		[_] Antenna switches
 		[_] Charge pump
-	[_] 16% Cleanup subcells
+	[_] 33% Cleanup subcells
 		[X] SPI
 			[X] Change names to bus notation
-		[_] FCW mux
+		[X] FCW mux
+			[X] Change names to bus notation
 		[_] NCO
 		[_] Switch mapper
 		[_] Antenna switches
