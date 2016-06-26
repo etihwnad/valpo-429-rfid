@@ -1,7 +1,7 @@
 
 
 Tasks
-	[_] 66% Cleanup subprojects
+	[_] 83% Cleanup subprojects
 		[X] SPI
 			[X] Change names to bus notation
 			[X] DRC clean
@@ -18,10 +18,10 @@ Tasks
 			[X] Change names to bus notation
 			[X] DRC clean
 			[X] NCC pass
-		[_] Antenna switches
-			[_] Change names to bus notation
-			[_] DRC clean
-			[_] NCC pass
+		[X] Antenna switches
+			[X] Change names to bus notation
+			[X] DRC clean
+			[X] NCC pass
 		[_] Charge pump
 			[_] Change names to bus notation
 			[_] DRC clean
