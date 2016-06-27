@@ -1,6 +1,6 @@
 
 
-[_] 66% Tasks
+[_] 50% Tasks
 	[X] 100% Cleanup subprojects
 		[X] SPI
 			[X] Change names to bus notation
@@ -26,11 +26,18 @@
 			[X] Change names to bus notation
 			[X] DRC clean
 			[X] NCC pass
-	[_] 33% Simulate subprojects
+	[_] 50% Simulate subprojects
 		[X] SPI
 			: Test vector is latched at rising edge of /CS.  Shifting is continuous
 			: and is always active -- not enabled by /CS being active-low.
 		[X] FCW mux
+		[X] NCO
+		[_] Switch mapper
+		[_] Antenna switches
+		[_] Charge pump
+	[_] 0% Assemble top modules
+		[_] SPI
+		[_] FCW mux
 		[_] NCO
 		[_] Switch mapper
 		[_] Antenna switches
@@ -38,5 +45,11 @@
 
 
 
+Notes
+	2016-06-28 03:22+0800 Cancel fab for Jun 27
+		: Updated projects 94040_rfid-1 and 94041_rfid-2 to target Sep 12 fab date
+		: instead.  Continue working on layouts.
+		:
+		: With tweaking, student versions can fit in a 3x1.5mm die.
 
 # vim: ft=votl
