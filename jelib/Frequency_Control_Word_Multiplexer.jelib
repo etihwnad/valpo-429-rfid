@@ -7,6 +7,8 @@ Vlayout|lay
 Vschematic|sch
 
 # Technologies:
+Tbicmos|ScaleFORbicmos()D300.0
+Tcmos|ScaleFORcmos()D300.0
 Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
 Ttft|ScaleFORtft()D300.0
 
@@ -64,7 +66,7 @@ EQ_0|out[7:0]|D4G2;X3;|pin@34||O
 X
 
 # Cell 8_2mux;1{lay}
-C8_2mux;1{lay}||mocmos|1461956069423|1466860427754||DRC_last_good_drc_area_date()G1466860455028|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466860455028
+C8_2mux;1{lay}||mocmos|1461956069423|1467046916366||DRC_last_good_drc_area_date()G1467048400891|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1467048400891
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-Metal-2-Con|contact@0||-400.5|-104||||
 NMetal-1-Metal-2-Con|contact@1||-289|-104||||
@@ -277,7 +279,6 @@ NMetal-2-Pin|pin@153||-282|-30||||
 NMetal-2-Pin|pin@155||-169.5|-30||||
 NMetal-2-Pin|pin@159||276.5|-30||||
 NMetal-1-Pin|pin@171||-427|-43||||
-Ngeneric:Invisible-Pin|pin@172||-326|-202.5|||||SIM_spice_card(D5G5;)S[VVDD VDD 0 DC 5,VGND GND 0 DC 0,VCLK CLK 0 DC 0 PULSE 0 5 300p 10p 10p 25n 50n,VSEL Sel 0 DC 0 PULSE 0 5   0p 10p 10p 20n 40n,"VIN1_0 in1[0] 0 DC 5","VIN1_1 in1[1] 0 DC 5","VIN1_2 in1[2] 0 DC 5","VIN1_3 in1[3] 0 DC 5","VIN1_4 in1[4] 0 DC 5","VIN1_5 in1[5] 0 DC 5","VIN1_6 in1[6] 0 DC 5","VIN1_7 in1[7] 0 DC 5","VIN2_0 in0[0] 0 DC 0","VIN2_1 in0[1] 0 DC 0","VIN2_2 in0[2] 0 DC 0","VIN2_3 in0[3] 0 DC 0","VIN2_4 in0[4] 0 DC 0","VIN2_5 in0[5] 0 DC 0","VIN2_6 in0[6] 0 DC 0","VIN2_7 in0[7] 0 DC 0",.TRAN 300N UIC,.include C:/Electric/c5.txt,.END]
 AMetal-2|net@26|||S2700|flop@0|gnd|-400.5|-104.5|contact@0||-400.5|-104
 AMetal-2|net@29|||S2700|flop@1|gnd|-289.5|-104.5|contact@1||-289.5|-104
 AMetal-2|net@31|||S2700|flop@2|gnd|-177.5|-104.5|contact@2||-177.5|-104
@@ -577,7 +578,7 @@ Evdd||D5G2;|inv@1|vdd|P
 X
 
 # Cell 8_2mux;1{sch}
-C8_2mux;1{sch}||schematic|1460402175927|1466859941952|
+C8_2mux;1{sch}||schematic|1460402175927|1467046912807|
 I8_2mux;1{ic}|8_2mux@0||47.5|84.25|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@5||-45.5|6||||
@@ -697,7 +698,6 @@ NWire_Pin|pin@204||10.5|-54.5||||
 NWire_Pin|pin@221||-33|10||||
 NWire_Pin|pin@222||-24.5|10||||
 NWire_Pin|pin@223||12.5|13.25||||
-Ngeneric:Invisible-Pin|pin@224||-43|95|||||SIM_spice_card(D5G5;)S[VVDD VDD 0 DC 5,VGND GND 0 DC 0,VCLK CLK 0 DC 0 PULSE 0 5 300p 10p 10p 25n 50n,VSEL Sel 0 DC 0 PULSE 0 5   0p 10p 10p 20n 40n,VIN1_0 IN1_0 0 DC 5,"VIN1_1 in1[1] 0 DC 5","VIN1_2 in1[2] 0 DC 5","VIN1_3 in1[3] 0 DC 5","VIN1_4 in1[4] 0 DC 5","VIN1_5 in1[5] 0 DC 5","VIN1_6 in1[6] 0 DC 5","VIN1_7 in1[7] 0 DC 5","VIN2_0 in0[0] 0 DC 0","VIN2_1 in0[1] 0 DC 0","VIN2_2 in0[2] 0 DC 0","VIN2_3 in0[3] 0 DC 0","VIN2_4 in0[4] 0 DC 0","VIN2_5 in0[5] 0 DC 0","VIN2_6 in0[6] 0 DC 0","VIN2_7 in0[7] 0 DC 0",.TRAN 300N UIC,.include C:/Electric/c5.txt,.END]
 Awire|net@77|||1800|conn@5|y|-43.5|6|pin@41||-19|6
 Awire|net@94|||2700|ff|CLKbar|18.75|-0.5|pin@53||18.75|13
 Awire|net@98|||900|pin@51||15.75|10|ff|CLK|15.75|-0.5
@@ -866,10 +866,20 @@ EQ_7|out[7]|D5G2;|conn@33|y|O
 X
 
 # Cell TEST_8_2;1{sch}
-CTEST_8_2;1{sch}||schematic|1461284745300|1461285918884|
-I8_2mux;1{ic}|8_2mux@0||40.5|8.25|||D5G4;
+CTEST_8_2;1{sch}||schematic|1461284745300|1467047003678|
+I8_2mux;1{ic}|8_2mux@0||31|9.25|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
-Ngeneric:Invisible-Pin|pin@0||106|3.25|||||SIM_spice_card(D5G5;)S[VVDD VDD 0 DC 5,VGND GND 0 DC 0,VCLK CLK 0 DC 0 PULSE 0 5 300p 10p 10p 25n 50n,VSEL Sel 0 DC 0 PULSE 0 5   0p 10p 10p 20n 40n,VIN1_0 IN1_0 0 DC 5,VIN1_1 IN1_1 0 DC 5,VIN1_2 IN1_2 0 DC 5,VIN1_3 IN1_3 0 DC 5,VIN1_4 IN1_4 0 DC 5,VIN1_5 IN1_5 0 DC 5,VIN1_6 IN1_6 0 DC 5,VIN1_7 IN1_7 0 DC 5,VIN2_0 IN2_0 0 DC 0,VIN2_1 IN2_1 0 DC 0,VIN2_2 IN2_2 0 DC 0,VIN2_3 IN2_3 0 DC 0,VIN2_4 IN2_4 0 DC 0,VIN2_5 IN2_5 0 DC 0,VIN2_6 IN2_6 0 DC 0,VIN2_7 IN2_7 0 DC 0,.TRAN 200N UIC,.include C:/Electric/c5.txt]
+Ngeneric:Invisible-Pin|pin@0||106|3.25|||||SIM_spice_card(D5G5;)S[VVDD VDD 0 DC 5,VGND GND 0 DC 0,.include c5.txt,.include fcw_test.pwl,.tran 1000n]
+NBus_Pin|pin@2||60.5|-0.75||||
+NBus_Pin|pin@3||15|-0.75||||
+NBus_Pin|pin@4||15|-3.25||||
+NWire_Pin|pin@5||15|-8.75||||
+NWire_Pin|pin@6||15.5|-11.75||||
+Awire|clock|D5G1;||0|8_2mux@0|CLK|26|-11.75|pin@6||15.5|-11.75
+Abus|in0[7:0]|D5G1;||IJ0|8_2mux@0|IN1_0|26|-0.75|pin@3||15|-0.75
+Abus|in1[7:0]|D5G1;||IJ0|8_2mux@0|IN2_0|26|-3.25|pin@4||15|-3.25
+Abus|out[7:0]|D5G1;||IJ1800|8_2mux@0|Q_0|50|-0.75|pin@2||60.5|-0.75
+Awire|sel|D5G1;||0|8_2mux@0|Sel|26|-8.75|pin@5||15|-8.75
 X
 
 # Cell TEST_FLOP;1{lay}
