@@ -1,6 +1,6 @@
 
 
-[_] 58% Tasks
+[_] 66% Tasks
 	[X] 100% Cleanup subprojects
 		[X] SPI
 			[X] Change names to bus notation
@@ -26,11 +26,11 @@
 			[X] Change names to bus notation
 			[X] DRC clean
 			[X] NCC pass
-	[_] 16% Simulate subprojects
+	[_] 33% Simulate subprojects
 		[X] SPI
 			: Test vector is latched at rising edge of /CS.  Shifting is continuous
 			: and is always active -- not enabled by /CS being active-low.
-		[_] FCW mux
+		[X] FCW mux
 		[_] NCO
 		[_] Switch mapper
 		[_] Antenna switches
