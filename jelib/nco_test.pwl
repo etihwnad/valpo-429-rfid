@@ -1,0 +1,26 @@
+Vclock clock 0 pulse(0 5 50n 2.0E-9 2.0E-9 4.900E-8 1.000E-7)
+
+Va[7] a[7] 0 PWL
++ 0 0
+
+Va[6] a[6] 0 PWL
++ 0 0
+
+Va[5] a[5] 0 PWL
++ 0 0
+
+Va[4] a[4] 0 PWL
++ 0 0
+
+Va[3] a[3] 0 PWL
++ 0 0
+
+Va[2] a[2] 0 PWL
++ 0 0
+
+Va[1] a[1] 0 PWL
++ 0 0
+
+Va[0] a[0] 0 PWL
++ 0 5
+

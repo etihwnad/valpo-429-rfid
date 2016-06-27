@@ -7,6 +7,7 @@ Vlayout|lay
 Vschematic|sch
 
 # Technologies:
+Tbicmos|ScaleFORbicmos()D300.0
 Tcmos|ScaleFORcmos()D300.0
 Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
 Ttft|ScaleFORtft()D300.0
@@ -770,7 +771,7 @@ EQ|Qbar|D5G2;|conn@4|y|U
 X
 
 # Cell NCO;1{ic}
-CNCO;1{ic}||artwork|1461438873563|1466905544155|E
+CNCO;1{ic}||artwork|1461438873563|1467049171021|E
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NCircle|art@2||7|0|20|20||
 NBox|art@3||7|0|20|20||
@@ -787,11 +788,11 @@ Aschematic:wire|net@1|||1800|pin@3||17|0|pin@2||20|0
 Aschematic:bus|net@10|||IJ0|pin@21||-3|0|pin@20||-9.5|0
 Ea[0:7]||D5G2;|pin@20||U
 ECLK|clk|D5G2;Y1;|pin@0||U
-EMSB|msb|D5G2;X0.5;Y-1;|pin@2||U
+EMSB|q[7:0]|D5G2;X0.5;Y-1;|pin@2||U
 X
 
 # Cell NCO;1{lay}
-CNCO;1{lay}||mocmos|1462591900754|1466920718887||DRC_last_good_drc_area_date()G1466920723907|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466920723907
+CNCO;1{lay}||mocmos|1462591900754|1467049810654||DRC_last_good_drc_area_date()G1467049910598|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1467049880629
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-2-Metal-3-Con|contact@0||76|455||||
 NMetal-2-Metal-3-Con|contact@1||275|393||||
@@ -819,6 +820,13 @@ NMetal-1-Metal-2-Con|contact@26||526|433.5|2|2||
 NMetal-1-Metal-2-Con|contact@27||311|6.5||||
 NMetal-1-Metal-2-Con|contact@29||89.5|146|2|2||
 NMetal-1-Metal-2-Con|contact@38||15|-40.5||||
+NMetal-1-Metal-2-Con|contact@39||928|-338.5||||
+NMetal-1-Metal-2-Con|contact@40||831|-341||||
+NMetal-1-Metal-2-Con|contact@41||734.5|-338.5||||
+NMetal-1-Metal-2-Con|contact@42||638|-337.5||||
+NMetal-1-Metal-2-Con|contact@43||540|-336||||
+NMetal-1-Metal-2-Con|contact@44||439|-331||||
+NMetal-1-Metal-2-Con|contact@45||342|-330||||
 Ieight_bit_addie;1{lay}|eight_bi@1||188|255|||D5G4;
 Ieightbit_reggie2;1{lay}|eightbit@0||236.5|-382|||D5G4;
 NMetal-2-Pin|pin@4||398.5|95||||
@@ -875,7 +883,6 @@ NMetal-1-Pin|pin@66||915|570||||
 NMetal-1-Pin|pin@67||1114|572.5||||
 NMetal-1-Pin|pin@68||1307|571.5||||
 NMetal-1-Pin|pin@69||1505|429.5||||
-Ngeneric:Invisible-Pin|pin@71||688.5|1005.75|||||SIM_spice_card(D5G20;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,VCLK CLK 0 DC 0 PULSE 0 5 0 10p 10p 25n 50n,"Va[7] a[7] 0 DC 0","Va[6] a[6] 0 DC 5","Va[5] a[5] 0 DC 5","Va[4] a[4] 0 DC 5","Va[3] a[3] 0 DC 5","Va[2] a[2] 0 DC 5","Va[1] a[1] 0 DC 5","Va[0] a[0] 0 DC 5",.include c5.txt,.tran 200n UIC,*.options post]
 NMetal-2-Pin|pin@75||299.5|-40.5||||
 NMetal-1-Pin|pin@81||311|6||||
 NMetal-2-Pin|pin@88||68.5|146||||
@@ -884,6 +891,14 @@ NMetal-3-Pin|pin@90||1516|-266.5||||
 NMetal-3-Pin|pin@91||241|-163||||
 NMetal-3-Pin|pin@92||-14|-163||||
 NMetal-3-Pin|pin@93||-14|235||||
+NMetal-2-Pin|pin@94||918.5|-338.5||||
+NMetal-2-Pin|pin@95||822.5|-341||||
+NMetal-2-Pin|pin@97||726.5|-338.5||||
+NMetal-2-Pin|pin@99||628.5|-337.5||||
+NMetal-2-Pin|pin@100||530.5|-336||||
+NMetal-2-Pin|pin@102||432.5|-331||||
+NMetal-2-Pin|pin@104||333.5|-330||||
+Ngeneric:Invisible-Pin|pin@106||668|835|||||SIM_spice_card(D5G30;)S[Vdd vdd 0 5,vgnd gnd 0 0,.include c5.txt,.include nco_test.pwl,.tran 25600n]
 AMetal-2|net@8||1|S2700|eightbit@0|D_2|496.5|-65|pin@5||496.5|92
 AMetal-2|net@10||1|S2700|eightbit@0|Q_8@601625499|594.5|-65|pin@6||594.5|91
 AMetal-2|net@15||1|S0|pin@9||995|40|pin@10||721.5|40
@@ -894,8 +909,6 @@ AMetal-2|net@19||1|S1800|pin@12||884.5|5.5|pin@13||1256.5|5.5
 AMetal-2|net@20||1|S2700|pin@13||1256.5|5.5|pin@14||1256.5|90
 AMetal-2|net@22||1|S2700|eightbit@0|D_7|980.5|-63|pin@15||980.5|-25
 AMetal-2|net@23||1|S1800|pin@15||980.5|-25|pin@16||1389.5|-25
-AMetal-2|net@25||1|S900|eightbit@0|Q|333.5|-318|pin@17||333.5|-345
-AMetal-2|net@30||1|S900|eightbit@0|Q_5|822.5|-318|pin@22||822.5|-442.5
 AMetal-2|net@35||1|S2700|pin@26||-45|-345|pin@27||-45|455
 AMetal-3|net@38||1|S2700|eight_bi@1|B|76|394|contact@0||76|455
 AMetal-2|net@40||1|S0|pin@29||432.5|-370|pin@30||-65|-370
@@ -920,7 +933,6 @@ AMetal-2|net@63||1|S2700|pin@43||1606|-366.5|pin@44||1606|456.5
 AMetal-2|net@64||1|S0|pin@44||1606|456.5|pin@45||1449|456.5
 AMetal-2|net@65||1|S900|pin@45||1449|456.5|contact@5||1449|389
 AMetal-3|net@66||1|S0|eight_bi@1|B_7|1449|389|contact@5||1448.5|389
-AMetal-2|net@67||1|S900|eightbit@0|Q_6|918.5|-318|pin@46||918.5|-410.5
 AMetal-2|net@70||1|S1800|pin@22||822.5|-442.5|pin@48||1776.5|-442.5
 AMetal-2|net@74||1|S2700|pin@48||1776.5|-442.5|pin@52||1776.5|513.5
 AMetal-2|net@75||1|S1800|pin@42||726.5|-471|pin@53||1837.5|-471
@@ -970,10 +982,6 @@ AMetal-2|net@152|||S|eight_bi@1|C_IN|89.5|146|contact@29||89.5|146
 AMetal-2|net@168||3|JS900|eight_bi@1|gnd|68.5|235|pin@88||68.5|146
 AMetal-2|net@170|||S0|eight_bi@1|C_IN|89.5|146|pin@88||68.5|146
 AMetal-2|net@206||1|S2700|eightbit@0|D_1|398.5|-65|pin@4||398.5|95
-AMetal-2|net@207||1|S900|eightbit@0|Q_1|432.5|-320|pin@29||432.5|-370
-AMetal-2|net@208||1|S900|eightbit@0|Q_2|530.5|-320|pin@33||530.5|-395
-AMetal-2|net@209||1|S900|eightbit@0|Q_3|628.5|-320|pin@37||628.5|-420
-AMetal-2|net@210||1|S900|eightbit@0|Q_4|726.5|-320|pin@42||726.5|-471
 AMetal-2|net@211||1|S0|pin@17||333.5|-345|pin@26||-45|-345
 AMetal-2|net@212||1|S1800|pin@27||-45|455|contact@0||76|455
 AMetal-3|net@213||7|S900|eight_bi@1|vdd_1|1516|186|pin@89||1516|106.5
@@ -983,6 +991,27 @@ AMetal-3|net@216||35|S0|eightbit@0|gnd_1|279.5|-163|pin@91||241|-163
 AMetal-3|net@217||35|S0|pin@91||241|-163|pin@92||-14|-163
 AMetal-3|net@218||15|S2700|pin@92||-14|-163|pin@93||-14|235
 AMetal-3|net@219||7|S0|eight_bi@1|gnd|68.5|235|pin@93||-14|235
+AMetal-2|net@220||1|S900|eightbit@0|Q_6|918.5|-318|pin@94||918.5|-338.5
+AMetal-2|net@221||1|S900|pin@94||918.5|-338.5|pin@46||918.5|-410.5
+AMetal-2|net@222||1|S1800|pin@94||918.5|-338.5|contact@39||928|-338.5
+AMetal-2|net@223||1|S900|eightbit@0|Q_5|822.5|-318|pin@95||822.5|-341
+AMetal-2|net@224||1|S900|pin@95||822.5|-341|pin@22||822.5|-442.5
+AMetal-2|net@225||1|S1800|pin@95||822.5|-341|contact@40||831|-341
+AMetal-2|net@226||1|S900|eightbit@0|Q_4|726.5|-320|pin@97||726.5|-338.5
+AMetal-2|net@227||1|S900|pin@97||726.5|-338.5|pin@42||726.5|-471
+AMetal-2|net@228||1|S1800|pin@97||726.5|-338.5|contact@41||734.5|-338.5
+AMetal-2|net@229||1|S900|eightbit@0|Q_3|628.5|-320|pin@99||628.5|-337.5
+AMetal-2|net@230||1|S900|pin@99||628.5|-337.5|pin@37||628.5|-420
+AMetal-2|net@231||1|S1800|pin@99||628.5|-337.5|contact@42||638|-337.5
+AMetal-2|net@232||1|S900|eightbit@0|Q_2|530.5|-320|pin@100||530.5|-336
+AMetal-2|net@233||1|S900|pin@100||530.5|-336|pin@33||530.5|-395
+AMetal-2|net@234||1|S1800|pin@100||530.5|-336|contact@43||540|-336
+AMetal-2|net@235||1|S900|eightbit@0|Q_1|432.5|-320|pin@102||432.5|-331
+AMetal-2|net@236||1|S900|pin@102||432.5|-331|pin@29||432.5|-370
+AMetal-2|net@237||1|S1800|pin@102||432.5|-331|contact@44||439|-331
+AMetal-2|net@238||1|S900|eightbit@0|Q|333.5|-318|pin@104||333.5|-330
+AMetal-2|net@239||1|S900|pin@104||333.5|-330|pin@17||333.5|-345
+AMetal-2|net@240||1|S1800|pin@104||333.5|-330|contact@45||342|-330
 AMetal-1|s[0]|D5G1;|1|S900|eight_bi@1|s|15|97|contact@38||15|-40.5
 AMetal-2|s[1]|D5G1;|1|S1800|eight_bi@1|s[1]|214|95|pin@4||398.5|95
 AMetal-2|s[2]|D5G1;|1|S1800|eight_bi@1|s[3]|408|92|pin@5||496.5|92
@@ -1001,12 +1030,19 @@ Ea[6]||D5G30;Y25;|contact@23||I
 Ea[7]||D5G30;Y25;|contact@24||I
 ECLK|clk|D5G2;|contact@27||I
 Egnd||D5G2;|pin@92||G
-Efcw|msb|D5G20;X34;Y3;|contact@9||O
+Eq[0]||D5G2;|contact@45||U
+Eq[1]||D5G2;|contact@44||U
+Eq[2]||D5G2;|contact@43||U
+Eq[3]||D5G2;|contact@42||U
+Eq[4]||D5G2;|contact@41||U
+Eq[5]||D5G2;|contact@40||U
+Eq[6]||D5G2;|contact@39||U
+Efcw|q[7]|D5G20;X34;Y3;|contact@9||O
 Evdd||D5G2;|eightbit@0|vdd_1|P
 X
 
 # Cell NCO;2{sch}
-CNCO;2{sch}||schematic|1461432181906|1466915883608|
+CNCO;2{sch}||schematic|1461432181906|1467049466673|
 INCO;1{ic}|NCO@0||60|30.5|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@0||-54|19.5||||
@@ -1018,7 +1054,6 @@ NGround|gnd@0||-41.5|23||||
 NWire_Pin|pin@23||10.5|9.5||||
 NWire_Pin|pin@24||10.5|19.5||||
 NWire_Pin|pin@26||30|-7.5||||
-Ngeneric:Invisible-Pin|pin@65||-26.5|41.25|||||SIM_spice_card(D5G1;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,VCLK CLK 0 DC 0 PULSE 0 5 0 10p 10p 25n 50n,"Va[7] a[7] 0 DC 0","Va[6] a[6] 0 DC 0","Va[5] a[5] 0 DC 0","Va[4] a[4] 0 DC 5","Va[3] a[3] 0 DC 5","Va[2] a[2] 0 DC 5","Va[1] a[1] 0 DC 5","Va[0] a[0] 0 DC 5",.include c5.txt,.tran 600n UIC,*.options post]
 NWire_Pin|pin@122||-41.5|27||||
 NWire_Pin|pin@123||-32|27||||
 NWire_Pin|pin@171||8|7.5||||
@@ -1077,21 +1112,12 @@ NWire_Pin|pin@303||7|11||||
 NWire_Pin|pin@304||8|13.5||||
 NWire_Pin|pin@305||-49.5|11||||
 NWire_Pin|pin@306||-32|13.5||||
-Awire|b[0]|D5G1;||1800|eightbit@0|Q1|32|9.5|pin@244||44.5|9.5
-Awire|b[1]|D5G1;||1800|eightbit@0|Q2|32|7|pin@239||43.5|7
-Awire|b[2]|D5G1;||1800|eightbit@0|Q3|32|5|pin@234||42|5
-Awire|b[3]|D5G1;||1800|eightbit@0|Q4|32|2.5|pin@229||40.5|2.5
-Awire|b[4]|D5G1;||1800|eightbit@0|Q5|32|0|pin@225||38.5|0
-Awire|b[5]|D5G1;||1800|eightbit@0|Q6|32|-2.5|pin@220||37.5|-2.5
-Awire|b[6]|D5G1;||1800|eightbit@0|Q7|32|-5|pin@216||36.5|-5
-Awire|b[7]|D5G2;X-11;Y1;||0|conn@10|a|51.5|-7.5|pin@211||34.5|-7.5
 Awire|net@31|||0|eightbit@0|CLK|14|9.5|pin@23||10.5|9.5
 Awire|net@32|||2700|pin@23||10.5|9.5|pin@24||10.5|19.5
 Awire|net@34|||0|eightbit@0|Q8|32|-7.5|pin@26||30|-7.5
 Awire|net@137|||1800|conn@0|y|-52|19.5|pin@24||10.5|19.5
 Awire|net@256|||2700|gnd@0||-41.5|25|pin@122||-41.5|27
 Awire|net@257|||1800|pin@122||-41.5|27|pin@123||-32|27
-Awire|net@406|||0|pin@211||34.5|-7.5|pin@26||30|-7.5
 Awire|net@407|||900|pin@211||34.5|-7.5|pin@212||34.5|-14.5
 Awire|net@409|||0|pin@212||34.5|-14.5|pin@214||-43|-14.5
 Awire|net@411|||2700|pin@214||-43|-14.5|pin@215||-43|-9.5
@@ -1150,6 +1176,14 @@ Awire|net@561|||0|eight_bi@0|a[0:7]|-39|11|pin@305||-49.5|11
 Awire|net@562|||900|conn@11|y|-49.5|11.5|pin@305||-49.5|11
 Awire|net@564|||0|eight_bi@0|Cin|-31|13.5|pin@306||-32|13.5
 Awire|net@565|||900|pin@123||-32|27|pin@306||-32|13.5
+Awire|q[0]|D5G1;||1800|eightbit@0|Q1|32|9.5|pin@244||44.5|9.5
+Awire|q[1]|D5G1;||1800|eightbit@0|Q2|32|7|pin@239||43.5|7
+Awire|q[2]|D5G1;||1800|eightbit@0|Q3|32|5|pin@234||42|5
+Awire|q[3]|D5G1;||1800|eightbit@0|Q4|32|2.5|pin@229||40.5|2.5
+Awire|q[4]|D5G1;||1800|eightbit@0|Q5|32|0|pin@225||38.5|0
+Awire|q[5]|D5G1;||1800|eightbit@0|Q6|32|-2.5|pin@220||37.5|-2.5
+Awire|q[6]|D5G1;||1800|eightbit@0|Q7|32|-5|pin@216||36.5|-5
+Awire|q[7]|D5G1;||0|pin@211||34.5|-7.5|pin@26||30|-7.5
 Awire|s[0]|D5G1;||0|eightbit@0|D1|14|7.5|pin@171||8|7.5
 Awire|s[1]|D5G1;||0|eightbit@0|D2|14|5.5|pin@184||7|5.5
 Awire|s[2]|D5G1;||0|eightbit@0|D3|14|3|pin@253||5.5|3
@@ -1160,7 +1194,20 @@ Awire|s[6]|D5G1;||0|eightbit@0|D7|14|-6|pin@295||-1.5|-6
 Awire|s[7]|D5G1;||1800|pin@267||-0.5|-8|eightbit@0|D8|14|-8
 Ea[0:7]||D5G2;X2;|conn@11|a|U
 ECLK|clk|D5G2;X1;|conn@0|a|U
-EMSB|msb|D5G2;X-1;|conn@10|y|U
+EMSB|q[7:0]|D5G2;X3;|conn@10|y|U
+X
+
+# Cell NCO_test;1{sch}
+CNCO_test;1{sch}||schematic|1467049235825|1467049766548|
+INCO;1{ic}|NCO@0||-11.5|7.5|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NWire_Pin|pin@1||-37|14||||
+NBus_Pin|pin@2||-36.5|7.5||||
+NBus_Pin|pin@3||33.5|7.5||||
+Ngeneric:Invisible-Pin|pin@4||-32.5|-7|||||SIM_spice_card(D5G1;)S[Vdd vdd 0 5,vgnd gnd 0 0,.include c5.txt,.include nco_test.pwl,.tran 25600n]
+Abus|a[0:7]|D5G1;||IJ0|NCO@0|a[0:7]|-21|7.5|pin@2||-36.5|7.5
+Awire|clock|D5G1;||0|NCO@0|CLK|-17.5|14|pin@1||-37|14
+Abus|q[7:0]|D5G1;||IJ1800|NCO@0|MSB|8.5|7.5|pin@3||33.5|7.5
 X
 
 # Cell Or;1{ic}
@@ -1183,7 +1230,7 @@ EOut|OUT|D5G2;X2;Y1.5;|pin@4||U
 X
 
 # Cell Or;1{lay}
-COr;1{lay}||mocmos|1462215397952|1466905571240||DRC_last_good_drc_area_date()G1466916504580|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466905621739
+COr;1{lay}||mocmos|1462215397952|1467050408123||DRC_last_good_drc_area_date()G1467050414508|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1467050414508
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-N-Active-Con|contact@0||-27.5|-20.5||5||
 NMetal-1-N-Active-Con|contact@1||-15.5|-20.5||5||
@@ -1208,13 +1255,12 @@ NPolysilicon-1-Pin|pin@13||-21.5|-33.5||||
 NMetal-1-Pin|pin@17||20.5|-10||||
 NMetal-1-Pin|pin@18||23|-10||||
 NPolysilicon-1-Pin|pin@19||-9.5|-5.5||||
-NP-Well-Pin|pin@21||24|-31.5||||
-NN-Well-Pin|pin@24||24|24.5||||
-NN-Well-Pin|pin@25||24|22||||
-NP-Well-Pin|pin@26||24|-15.5||||
-NN-Well-Pin|pin@27||24|-3.5||||
-NP-Well-Node|plnode@1||-28|-31|12|12||A
-NN-Well-Node|plnode@2||-30|23|12|12||A
+NN-Select-Node|plnode@3||-15.5|-20.5|33|14||A
+NN-Select-Node|plnode@4||14.5|-20.5|21|14||A
+NN-Well-Node|plnode@5||-3|14|66|47||A
+NP-Select-Node|plnode@6||-18|6.5|28|24||A
+NP-Select-Node|plnode@7||14.75|6.5|21.5|24||A
+NP-Well-Node|plnode@8||-3|-28.5|66|38||A
 NP-Transistor|pmos@0||-21.5|6.5|17||RRR|
 NP-Transistor|pmos@1||-14.5|6.5|17||RRR|
 NP-Transistor|pmos@2||14.5|6.5|17||RRR|
@@ -1253,11 +1299,14 @@ APolysilicon-1|net@54|||S900|pmos@0|poly-right|-21.5|-5.5|nmos@0|poly-left|-21.5
 AP-Active|net@55|||S1800|pmos@1|diff-bottom|-18.25|12.5|pmos@0|diff-top|-17.75|12.5
 APolysilicon-1|net@56|||S1800|pmos@1|poly-right|-14.5|-5.5|pin@19||-9.5|-5.5
 APolysilicon-1|net@57|||S2700|nmos@1|poly-left|-9.5|-13.5|pin@19||-9.5|-5.5
-AN-Well|net@63||10|S1800|plnode@2||-30|24.5|pin@24||24|24.5
-AN-Well|net@65||10|S900|pin@24||24|24.5|pin@25||24|22
-AP-Well|net@66||10|S2700|pin@21||24|-31.5|pin@26||24|-15.5
-AN-Well|net@67||10|S900|pin@24||24|24.5|pin@27||24|-3.5
-AP-Well|net@68||10|S1800|plnode@1||-30|-31.5|pin@21||24|-31.5
+AN-Well|net@69|||S900|well@0||-21.5|32|pmos@0|p-trans-well|-21.5|6.5
+AP-Well|net@71|||S900|nmos@0|n-trans-well|-21.5|-20.5|substr@0||-21.5|-42
+AP-Well|net@72|||S900|nmos@2|n-trans-well|14.5|-20.5|substr@0||14.5|-42
+AP-Well|net@73|||S900|nmos@1|n-trans-well|-9.5|-20.5|substr@0||-9.5|-42
+AN-Well|net@74|||S2700|pmos@1|p-trans-well|-14.5|6.5|well@0||-14.5|32
+AN-Well|net@75|||S2700|pmos@0|p-trans-well|-21.5|6.5|well@0||-21.5|32
+AN-Well|net@76|||S2700|pmos@1|p-trans-well|-14.5|6.5|well@0||-14.5|32
+AN-Well|net@78|||S2700|pmos@2|p-trans-well|14.5|6.5|well@0||14.5|32
 EB|A|D5G2;|contact@6||I
 EA_1|B|D5G2;|contact@7||I
 EOUT||D5G2;X1;|pin@18||U
@@ -2064,7 +2113,7 @@ Es[7]||D5G2;X1;|pin@89||U
 X
 
 # Cell eight_bit_addie;1{lay}
-Ceight_bit_addie;1{lay}||mocmos|1462494452773|1466920302459||DRC_last_good_drc_area_date()G1466920045390|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466920494709
+Ceight_bit_addie;1{lay}||mocmos|1462494452773|1467049818723||DRC_last_good_drc_area_date()G1466920045390|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1467049880629
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NMetal-1-Metal-2-Con|contact@0||-88|-103.5||||
 NMetal-2-Metal-3-Con|contact@1||-88|-103.5||||
@@ -2124,7 +2173,6 @@ NMetal-1-Pin|pin@22||608|-164||||
 NMetal-1-Pin|pin@23||1002|-151.5||||
 NMetal-1-Pin|pin@24||1201|-152.5||||
 NMetal-3-Pin|pin@25||1274.5|-108||||
-Ngeneric:Invisible-Pin|pin@26||383|303.75|||||SIM_spice_card(D5G3;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,"Vb[7] b[7] 0 DC 0","Vb[6] b[6] 0 DC 0","Vb[5] b[5] 0 DC 0","Vb[4] b[4] 0 DC 0","Vb[3] b[3] 0 DC 5","Vb[2] b[2] 0 DC 0","Vb[1] b[1] 0 DC 0","Vb[0] b[0] 0 DC 0",Vcin cin 0 DC 0,"Va[7] a[7] 0 DC 0 PULSE 0 5 0 10p 10p 800n 1600n","Va[6] a[6] 0 DC 0 PULSE 0 5 0 10p 10p 400n 800n","Va[5] a[5] 0 DC 0 PULSE 0 5 0 10p 10p 200n 400n","Va[4] a[4] 0 DC 0 PULSE 0 5 0 10p 10p 100n 200n","Va[3] a[3] 0 DC 0 PULSE 0 5 0 10p 10p 50n 100n","Va[2] a[2] 0 DC 0 PULSE 0 5 0 10p 10p 25n 50n","Va[1] a[1] 0 DC 0 PULSE 0 5 0 10p 10p 12.5n 25n","Va[0] a[0] 0 DC 0 PULSE 0 5 0 10p 10p 6.25n 12.5n",.include c5.txt,.tran 2000n UIC,*.options post]
 NMetal-3-Pin|pin@27||154|-65||||
 NMetal-3-Pin|pin@28||348|-67||||
 NMetal-3-Pin|pin@29||936|-67||||
@@ -2238,7 +2286,7 @@ Evdd_1||D5G2;|pin@31||P
 X
 
 # Cell eight_bit_addie;1{sch}
-Ceight_bit_addie;1{sch}||schematic|1461954847153|1466916006011|
+Ceight_bit_addie;1{sch}||schematic|1461954847153|1467049503786|
 Ieight_bit_addie;1{ic}|8b_rippl@0||43.5|51.5|||D5G4;
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@16||-22.5|20||||
@@ -2342,7 +2390,6 @@ NWire_Pin|pin@99||-9|-71.5||||
 NWire_Pin|pin@100||-9|-76.5||||
 NWire_Pin|pin@101||-38.5|4||||
 NWire_Pin|pin@102||-38.5|0||||
-Ngeneric:Invisible-Pin|pin@103||-39.5|50.75|||||SIM_spice_card(D5G1;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,"Vb[7] b[7] 0 DC 0","Vb[6] b[6] 0 DC 0","Vb[5] b[5] 0 DC 0","Vb[4] b[4] 0 DC 0","Vb[3] b[3] 0 DC 5","Vb[2] b[2] 0 DC 0","Vb[1] b[1] 0 DC 0","Vb[0] b[0] 0 DC 0",Vcin cin 0 DC 0,"Va[7] a[7] 0 DC 0 PULSE 0 5 0 10p 10p 800n 1600n","Va[6] a[6] 0 DC 0 PULSE 0 5 0 10p 10p 400n 800n","Va[5] a[5] 0 DC 0 PULSE 0 5 0 10p 10p 200n 400n","Va[4] a[4] 0 DC 0 PULSE 0 5 0 10p 10p 100n 200n","Va[3] a[3] 0 DC 0 PULSE 0 5 0 10p 10p 50n 100n","Va[2] a[2] 0 DC 0 PULSE 0 5 0 10p 10p 25n 50n","Va[1] a[1] 0 DC 0 PULSE 0 5 0 10p 10p 12.5n 25n","Va[0] a[0] 0 DC 0 PULSE 0 5 0 10p 10p 6.25n 12.5n",.include c5.txt,.tran 2000n UIC,*.options post]
 Awire|a[0]|D5G1;||2700|pin@86||-32.75|16.5|pin@85||-32.75|20
 Awire|a[1]|D5G1;||2700|pin@64||-32.75|2.5|pin@63||-32.75|7
 Awire|a[2]|D5G1;||2700|pin@96||-32.75|-10.5|pin@95||-32.75|-6
@@ -2539,7 +2586,7 @@ EQ8||D5G2;Y-1;|pin@32||U
 X
 
 # Cell eightbit_reggie;1{lay}
-Ceightbit_reggie;1{lay}||mocmos|1461288761062|1461295084157||DRC_last_good_drc_area_date()G1461290898795|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1461290898795
+Ceightbit_reggie;1{lay}||mocmos|1461288761062|1467049873591||DRC_last_good_drc_area_date()G1461290898795|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1461290898795
 ID-ff;1{lay}|D-ff@0||-396.5|115|RRR||D5G4;
 ID-ff;1{lay}|D-ff@1||-153|115|RRR||D5G4;
 ID-ff;1{lay}|D-ff@2||97.5|111|RRR||D5G4;
@@ -2643,7 +2690,6 @@ NMetal-1-Pin|pin@95||986|161.5||||
 NMetal-1-Pin|pin@96||1067.5|-184||||
 NMetal-1-Pin|pin@99||1214|-184||||
 NMetal-1-Pin|pin@103||1214|169||||
-Ngeneric:Invisible-Pin|pin@104||221.5|477.75|||||SIM_spice_card(D5G2;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,VCLK CLK 0 DC 0 PULSE 0 5 0 10p 10p 1.5n 3n,VD1 D1 0 DC 0 PULSE 0 5 2n 10p 10p 6n 12n,VD2 D2 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,VD3 D3 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,VD4 D4 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,VD5 D5 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,VD6 D6 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,VD7 D7 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,VD8 D8 0 DC 0 PULSE 0 5 2n 10p 10p 3n 6n,.include c5.txt,.tran 100n UIC,*.options post]
 NMetal-1-Pin|pin@105||-632.5|138.5||||
 AMetal-1|net@2||1|S0|D-ff@6|CLK|860.5|122|pin@1||611.5|122
 AMetal-1|net@3||1|S2700|D-ff@7|CLK|611.5|117|pin@1||611.5|122
@@ -2908,7 +2954,7 @@ EQ8||D5G2;|conn@16|y|U
 X
 
 # Cell eightbit_reggie2;1{lay}
-Ceightbit_reggie2;1{lay}||mocmos|1461288761062|1466920462665||DRC_last_good_drc_area_date()G1466920465214|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466920465214
+Ceightbit_reggie2;1{lay}||mocmos|1461288761062|1467049903355||DRC_last_good_drc_area_date()G1466920465214|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1467049910598
 ID-ff2;1{lay}|D-ff2@0||173|218|RRR||D5G4;
 ID-ff2;1{lay}|D-ff2@1||271|218|RRR||D5G4;
 ID-ff2;1{lay}|D-ff2@2||369|218|RRR||D5G4;
@@ -2978,7 +3024,6 @@ NMetal-3-Pin|pin@812||532|229||||
 NMetal-3-Pin|pin@813||628|230||||
 NMetal-3-Pin|pin@814||467|315||||
 NMetal-3-Pin|pin@815||74|313||||
-Ngeneric:Invisible-Pin|pin@816||390|387.25|||||SIM_spice_card(D5G4;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,VCLK CLK 0 DC 0 PULSE 0 5 35p 5p 5p 25n 50n,VD D 0 DC 0 PULSE 0 5 0 5p 5p 50n 100n,.include c5.txt,.tran 100n UIC,*.options post]
 AMetal-2|net@3444|||S900|contact@1689||708|191.5|contact@1690||708|116.5
 AMetal-1|net@3445|||S0|D-ff2@5|vdd|709|191.5|contact@1689||708|191.5
 AMetal-3|net@3446||35|IS1800|contact@1690||708|116.5|pin@803||805|116.5
@@ -3091,7 +3136,7 @@ Evdd_1|vdd|D5G2;|contact@1688||P
 X
 
 # Cell eightbit_reggie2;1{sch}
-Ceightbit_reggie2;1{sch}||schematic|1461291108046|1462831137266|
+Ceightbit_reggie2;1{sch}||schematic|1461291108046|1467049510660|
 ID-ff2;1{ic}|D-ff@0||-13|5|RRR||D5G4;
 ID-ff2;1{ic}|D-ff@1||-2|5|RRR||D5G4;
 ID-ff2;1{ic}|D-ff@2||9|5|RRR||D5G4;
@@ -3144,7 +3189,6 @@ NWire_Pin|pin@31||51.5|-3.5||||
 NWire_Pin|pin@32||58|-3.5||||
 NWire_Pin|pin@51||29.5|11.5||||
 NWire_Pin|pin@53||-32|11.5||||
-Ngeneric:Invisible-Pin|pin@54||9.5|66.75|||||SIM_spice_card(D5G2;)S[VGND GND 0 DC 0,VDD VDD 0 DC 5,VCLK CLK 0 DC 0 PULSE 0 5 35p 5p 5p 25n 50n,VD D 0 DC 0 PULSE 0 5 0 5p 5p 50n 100n,.include c5.txt,.tran 100n UIC,*.options post]
 Awire|net@0|||2700|D-ff@5|CLK|-24.5|10|pin@0||-24.5|11.5
 Awire|net@1|||1800|pin@0||-24.5|11.5|pin@1||-13.5|11.5
 Awire|net@2|||2700|D-ff@0|CLK|-13.5|10|pin@1||-13.5|11.5
