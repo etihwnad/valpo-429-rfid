@@ -1,0 +1,40 @@
+# header information:
+Hrfid-assembly|9.06
+
+# Views:
+Vlayout|lay
+
+# External Libraries:
+
+LAntennaSwitcher|AntennaSwitcher
+
+LFinal_NCO|Final_NCO
+
+LFrequency_Control_Word_Multiplexer|Frequency_Control_Word_Multiplexer
+
+LMOSIS_SUBM_PADS_C5|MOSIS_SUBM_PADS_C5
+
+LSPI_interface2|SPI_interface2
+
+LSwitch_Mapper|Switch_Mapper
+
+Lchargepump_final|chargepump_final
+
+# Technologies:
+Tbicmos|ScaleFORbicmos()D300.0
+Tcmos|ScaleFORcmos()D300.0
+Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
+Ttft|ScaleFORtft()D300.0
+
+# Cell top;1{lay}
+Ctop;1{lay}||mocmos|1467053227294|1467053669323|
+IFrequency_Control_Word_Multiplexer:8_2mux;1{lay}|8_2mux@0||6752|7825.5|||D5G4;
+IAntennaSwitcher:AntennaSwitcher;1{lay}|AntennaS@0||6668.5|8679|||D5G4;
+IMOSIS_SUBM_PADS_C5:Digital_barepadframe_3mmX3mm;1{lay}|Digital_@2||5503|4955.5|||D5G4;
+IMOSIS_SUBM_PADS_C5:Digital_barepadframe_1.5mmX1.5mm;1{lay}|Digital_@3||-2911|7376.5|||D5G4;
+IFinal_NCO:NCO;1{lay}|NCO@0||7742.5|8247|||D5G4;
+ISwitch_Mapper:Switch_Mapper_Final;1{lay}|Switch_M@0||6745.5|8313.5|||D5G4;
+ISPI_interface2:Wrapper;1{lay}|Wrapper@0||1541.5|5954.5|||D5G4;
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Ichargepump_final:chargepump;2{lay}|chargepu@0||3183|9629.5|R||D5G4;
+X

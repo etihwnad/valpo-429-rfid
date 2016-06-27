@@ -13,7 +13,7 @@ Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
 Ttft|ScaleFORtft()D300.0
 
 # Cell chargepump;2{lay}
-Cchargepump;2{lay}||mocmos|1461770299501|1466927247544||DRC_last_good_drc_area_date()G1466927250141|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466927250141
+Cchargepump;2{lay}||mocmos|1461770299501|1467053267613||DRC_last_good_drc_area_date()G1466927250141|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1466927250141
 Ngeneric:Facet-Center|art@0||0|0||||AV
 Idiode1;1{lay}|diode1@11||-546|-1965|RR||D5G4;
 Idiode1;1{lay}|diode1@12||-546|-1907|RR||D5G4;
@@ -60,7 +60,6 @@ NMetal-1-Pin|pin@152||-2339|-376.5||||
 NMetal-1-Pin|pin@153||-2339|-1904||||
 NMetal-1-Pin|pin@157||-609|1565||||
 NMetal-1-Pin|pin@159||-164|1487||||
-Ngeneric:Invisible-Pin|pin@160||-1555|2359|||||SIM_spice_card(D5G100;)S[V1 in 0 SINE(0 1.5 915Meg 0 0 0),.tran 50u,.include c5.txt]
 NMetal-1-Pin|pin@161||-54|1483||||
 NMetal-1-Pin|pin@162||-164|1483||||
 Ipolycap;1{lay}|polycap@3||-1487|-1901|RR||D5G4;
