@@ -54,5 +54,6 @@ clean:
 
 web: $(html) $(pdf)
 	scp $^ dan@tesla.whiteaudio.com:/var/www/www.agnd.net/valpo/429/
+	scp -r fig  dan@tesla.whiteaudio.com:/var/www/www.agnd.net/valpo/429/
 	cp specifications.pdf "/home/dan/insync-valpo/ECE429/429 final project/"
 
